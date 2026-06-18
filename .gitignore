@@ -1,0 +1,46 @@
+# ── Data (large; reproducible from the Python export + this repo's scripts) ──
+# Raw input CSVs from the Python/ConvoKit stage
+Input_data_from_python/*.csv
+
+# Derived analysis tables built by script 1
+Derived_data/*.rds
+Derived_data/*.csv
+Derived_data/*.parquet
+
+# Keep the folder structure itself
+!**/.gitkeep
+
+# ── R session / project cruft ────────────────────────────────────────────────
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj.bak
+
+# renv library (if used later) — keep the lockfile, ignore the library
+renv/library/
+renv/staging/
+
+# ── Outputs: keep folders, decide per-type what to commit ───────────────────
+# By default we DO commit final tables/figures so the repo is browsable,
+# but ignore scratch/intermediate files. Adjust as the project matures.
+Graphical_output/**/*.tmp
+*.log
+
+# ── OS / editor ──────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+*~
+
+# ── LaTeX build artifacts (script 6 / Overleaf sync) ────────────────────────
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
