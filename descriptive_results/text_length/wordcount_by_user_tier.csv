@@ -1,0 +1,4 @@
+user_type,n_comments,mean_words,median_words
+Bottom 95%,71307,89.7,53
+Top 5% (excl. Top 1%),23065,90,53
+Top 1%,19299,97.4,60

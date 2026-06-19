@@ -1,5 +1,5 @@
 # 3. descriptives_power_users.R for Conversations Gone Awry (CMV) - Power Users Analysis
-# Generates descriptive statistics and figures for the top 1% ("power users").
+# Generates descriptive statistics and figures for the top 5% ("power users").
 #
 # Filtering: comment-level — only rows in ce where speaker is a power user.
 # Conversation scope: conversations those users participated in (>= 1 comment).
@@ -44,7 +44,8 @@ base_theme <- theme_pubr() +
 col_awry    <- "#EF5350"
 col_ontrack <- "#81C784"
 col_neutral <- "#5C85D6"
-col_power <- "#B8860B"
+col_power <- "#B8860B" # Top 1% users
+col_power_2 <- "#CD7F32" # Top 5% users
 col_deleted <- "#757575"  
 
 # -- 2. Load data --
@@ -61,7 +62,7 @@ ce <- ce %>%
 
 
 # -- 3. Define power users --
-# Full user_stats is needed to compute the q99 threshold consistently
+# Full user_stats is needed to compute the q95 threshold consistently
 
 user_stats <- ce %>%
   group_by(speaker) %>%
@@ -75,21 +76,21 @@ user_stats <- ce %>%
   mutate(max_delta = ifelse(is.infinite(max_delta), NA_real_, max_delta)) %>%
   arrange(desc(n_comments))
 
-q99 <- quantile(user_stats$n_comments, 0.99)
+q95 <- quantile(user_stats$n_comments, 0.95)
 
-power_users <- user_stats %>% filter(n_comments >= q99)
-top1pct_speakers <- power_users$speaker
+power_users <- user_stats %>% filter(n_comments >= q95)
+top5pct_speakers <- power_users$speaker
 n_power <- nrow(power_users)
 
 cat(sprintf(
-  "\nPower users: n = %d (top 1%% threshold: >= %.0f comments per user)\n",
-  nrow(power_users), q99
+  "\nPower users: n = %d (top 5%% threshold: >= %.0f comments per user)\n",
+  nrow(power_users), q95
 ))
 
 # -- 4. Filter comments and conversations --
 
 # Comment-level filter: only power user rows
-ce_pu <- ce %>% filter(speaker %in% top1pct_speakers)
+ce_pu <- ce %>% filter(speaker %in% top5pct_speakers)
 
 # Conversations these users participated in (at least one comment)
 conv_pu <- conv %>% filter(conversation_id %in% unique(ce_pu$conversation_id))
@@ -114,7 +115,7 @@ n_ontrack_pu <- sum(!conv_pu$has_removed_comment)
 
 headline_pu <- tibble(
   Metric = c(
-    "Power users (top 1%)",
+    "Power users (top 5%)",
     "Total comments by power users",
     "Conversations participated in",
     "Date range start",
@@ -143,7 +144,7 @@ headline_pu <- tibble(
   )
 )
 
-save_csv(headline_pu, "headline_stats", "top1pct_headline_stats.csv")
+save_csv(headline_pu, "headline_stats", "top5pct_headline_stats.csv")
 
 
 # === SECTION 2: TEMPORAL ===
@@ -151,7 +152,7 @@ save_csv(headline_pu, "headline_stats", "top1pct_headline_stats.csv")
 cat("\n=== TEMPORAL (POWER USERS) ===\n")
 
 # Monthly comments and distinct conversations by power users
-temporal_top1pct_monthly <- ce_pu %>%
+temporal_top5pct_monthly <- ce_pu %>%
   group_by(year, month) %>%
   summarise(
     n_comments      = n(),
@@ -160,54 +161,54 @@ temporal_top1pct_monthly <- ce_pu %>%
   ) %>%
   mutate(year_month = as.Date(sprintf("%d-%02d-01", year, month)))
 
-save_csv(temporal_top1pct_monthly, "temporal", "top1pct_temporal_monthly.csv")
+save_csv(temporal_top5pct_monthly, "temporal", "top5pct_temporal_monthly.csv")
 
 # How many of the 246 power users were active in each year
-top1pct_users_by_year <- ce_pu %>%
+top5pct_users_by_year <- ce_pu %>%
   group_by(year) %>%
   summarise(unique_users = n_distinct(speaker), .groups = "drop")
 
-save_csv(top1pct_users_by_year, "temporal", "top1pct_unique_users_by_year.csv")
+save_csv(top5pct_users_by_year, "temporal", "top5pct_unique_users_by_year.csv")
 
 # -- Plots --
 
-p_top1pct_comments <- temporal_top1pct_monthly %>%
+p_top5pct_comments <- temporal_top5pct_monthly %>%
   ggplot(aes(x = year_month, y = n_comments)) +
-  geom_col(fill = col_power) +
+  geom_col(fill = col_power_2) +
   scale_x_date(date_breaks = "6 months", date_labels = "%b %Y") +
   labs(title    = "Power users: comments by month",
-       subtitle = paste0("Top 1% users (n = ", n_power, ") only"),
+       subtitle = paste0("Top 5% users (n = ", n_power, ") only"),
        x = NULL, y = "Number of comments") +
   base_theme +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-save_fig(p_top1pct_comments, "temporal", "top1pct_comments_by_month.png")
+save_fig(p_top5pct_comments, "temporal", "top5pct_comments_by_month.png")
 
-p_top1pct_conversations <- temporal_top1pct_monthly %>%
+p_top5pct_conversations <- temporal_top5pct_monthly %>%
   ggplot(aes(x = year_month, y = n_conversations)) +
-  geom_col(fill = col_power) +
+  geom_col(fill = col_power_2) +
   scale_x_date(date_breaks = "6 months", date_labels = "%b %Y") +
   labs(title    = "Power users: conversations participated in by month",
-       subtitle = paste0("Top 1% users (n = ", n_power, ") only"),
+       subtitle = paste0("Top 5% users (n = ", n_power, ") only"),
        x = NULL, y = "Number of conversations") +
   base_theme +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-save_fig(p_top1pct_conversations, "temporal", "top1pct_conversations_by_month.png")
+save_fig(p_top5pct_conversations, "temporal", "top5pct_conversations_by_month.png")
 
-p_top1pct_temporal_combined <- p_top1pct_comments / p_top1pct_conversations
-save_fig(p_top1pct_temporal_combined, "temporal", "top1pct_temporal_combined.png",
+p_top5pct_temporal_combined <- p_top5pct_comments / p_top5pct_conversations
+save_fig(p_top5pct_temporal_combined, "temporal", "top5pct_temporal_combined.png",
          width = 9, height = 8)
 
-p_top1pct_users_year <- top1pct_users_by_year %>%
+p_top5pct_users_year <- top5pct_users_by_year %>%
   ggplot(aes(x = factor(year), y = unique_users)) +
-  geom_col(fill = col_power) +
+  geom_col(fill = col_power_2) +
   labs(title    = "Power users active by year",
        subtitle = "A user appears once per year they commented. Not additive across years.",
        x = "Year", y = "Active power users") +
   base_theme
 
-save_fig(p_top1pct_users_year, "temporal", "top1pct_users_by_year.png")
+save_fig(p_top5pct_users_year, "temporal", "top5pct_users_by_year.png")
 
 
 # === SECTION 3: USER PARTICIPATION ===
@@ -225,14 +226,14 @@ delta_summary_pu <- power_users %>%
     max_delta_overall = max(max_delta, na.rm = TRUE)
   )
 
-save_csv(delta_summary_pu, "user_participation", "top1pct_delta_flair_summary.csv")
+save_csv(delta_summary_pu, "user_participation", "top5pct_delta_flair_summary.csv")
 
 # -- 3b. Awry participation rate per power user --
 # For each of the 246 users: what % of their OWN comments land in awry conversations?
 # This reveals whether the group is homogeneous or whether there are structurally
 # "civil" vs "derailment-prone" power users.
 
-top1pct_awry_rate <- ce_pu %>%
+top5pct_awry_rate <- ce_pu %>%
   group_by(speaker) %>%
   summarise(
     n_comments      = n(),
@@ -241,7 +242,7 @@ top1pct_awry_rate <- ce_pu %>%
     .groups = "drop"
   )
 
-top1pct_awry_rate_summary <- top1pct_awry_rate %>%
+top5pct_awry_rate_summary <- top5pct_awry_rate %>%
   summarise(
     mean_pct_awry   = round(mean(pct_awry), 1),
     median_pct_awry = round(median(pct_awry), 1),
@@ -252,14 +253,14 @@ top1pct_awry_rate_summary <- top1pct_awry_rate %>%
     pct_users_below_50 = round(100 * mean(pct_awry < 50), 1)
   )
 
-save_csv(top1pct_awry_rate,         "user_participation", "top1pct_awry_participation_rate.csv")
-save_csv(top1pct_awry_rate_summary, "user_participation", "top1pct_awry_participation_summary.csv")
+save_csv(top5pct_awry_rate,         "user_participation", "top5pct_awry_participation_rate.csv")
+save_csv(top5pct_awry_rate_summary, "user_participation", "top5pct_awry_participation_summary.csv")
 
-mean_awry_pu <- top1pct_awry_rate_summary$mean_pct_awry
+mean_awry_pu <- top5pct_awry_rate_summary$mean_pct_awry
 
-p_top1pct_awry_hist <- top1pct_awry_rate %>%
+p_top5pct_awry_hist <- top5pct_awry_rate %>%
   ggplot(aes(x = pct_awry)) +
-  geom_histogram(bins = 20, fill = col_power, colour = "white") +
+  geom_histogram(bins = 20, fill = col_power_2, colour = "white") +
   geom_vline(xintercept = 50, linetype = "dashed",
              colour = "darkred", linewidth = 0.8) +
   geom_vline(xintercept = mean_awry_pu, linetype = "dotted",
@@ -279,7 +280,7 @@ p_top1pct_awry_hist <- top1pct_awry_rate %>%
   ) +
   base_theme
 
-save_fig(p_top1pct_awry_hist, "user_participation", "top1pct_awry_participation_rate.png")
+save_fig(p_top5pct_awry_hist, "user_participation", "top5pct_awry_participation_rate.png")
 
 
 # === SECTION 4: SCORES ===
@@ -297,7 +298,7 @@ score_summary_pu <- ce_pu %>%
     pct_zero_or_below = round(100 * mean(score <= 0, na.rm = TRUE), 1)
   )
 
-save_csv(score_summary_pu, "scores", "top1pct_score_summary.csv")
+save_csv(score_summary_pu, "scores", "top5pct_score_summary.csv")
 
 # -- 4b. Mean score by quintile --
 
@@ -314,11 +315,11 @@ score_quintiles_pu <- ce_pu %>%
   ) %>%
   mutate(label = paste0("Q", quintile, "\n(", min_score, " to ", max_score, ")"))
 
-save_csv(score_quintiles_pu %>% select(-label), "scores", "top1pct_score_quintiles.csv")
+save_csv(score_quintiles_pu %>% select(-label), "scores", "top5pct_score_quintiles.csv")
 
-p_top1pct_score_quintiles <- score_quintiles_pu %>%
+p_top5pct_score_quintiles <- score_quintiles_pu %>%
   ggplot(aes(x = label, y = mean_score)) +
-  geom_col(fill = col_power) +
+  geom_col(fill = col_power_2) +
   geom_text(aes(label = sprintf("%.1f", mean_score)),
             vjust = -0.4, size = 3.5, fontface = "bold") +
   scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
@@ -329,7 +330,7 @@ p_top1pct_score_quintiles <- score_quintiles_pu %>%
   ) +
   base_theme
 
-save_fig(p_top1pct_score_quintiles, "scores", "top1pct_score_distribution.png")
+save_fig(p_top5pct_score_quintiles, "scores", "top5pct_score_distribution.png")
 
 # -- 4c. Mean score by conversation outcome --
 
@@ -343,9 +344,9 @@ score_by_outcome_pu <- ce_pu %>%
     .groups = "drop"
   )
 
-save_csv(score_by_outcome_pu, "scores", "top1pct_score_by_outcome.csv")
+save_csv(score_by_outcome_pu, "scores", "top5pct_score_by_outcome.csv")
 
-p_top1pct_score_outcome <- score_by_outcome_pu %>%
+p_top5pct_score_outcome <- score_by_outcome_pu %>%
   ggplot(aes(x = outcome, y = mean_score, fill = outcome)) +
   geom_col(width = 0.5) +
   geom_text(aes(label = sprintf("%.1f", mean_score)),
@@ -354,16 +355,16 @@ p_top1pct_score_outcome <- score_by_outcome_pu %>%
   scale_y_continuous(limits = c(0, 50)) +  # Matched to full-sample chart for comparability
   labs(
     title    = "Power users: mean score by conversation outcome",
-    subtitle = paste0("Top 1% users (n = ", n_power, ") only"),
+    subtitle = paste0("Top 5% users (n = ", n_power, ") only"),
     x = NULL, y = "Mean score"
   ) +
   base_theme +
   theme(legend.position = "none")
 
-save_fig(p_top1pct_score_outcome, "scores", "top1pct_score_by_outcome.png", width = 6, height = 5)
+save_fig(p_top5pct_score_outcome, "scores", "top5pct_score_by_outcome.png", width = 6, height = 5)
 
 # -- 4d. Median score by conversation outcome --
-p_top1pct_score_outcome_median <- score_by_outcome_pu %>%
+p_top5pct_score_outcome_median <- score_by_outcome_pu %>%
   ggplot(aes(x = outcome, y = median_score, fill = outcome)) +
   geom_col(width = 0.5) +
   geom_text(aes(label = sprintf("%.0f", median_score)),
@@ -372,16 +373,16 @@ p_top1pct_score_outcome_median <- score_by_outcome_pu %>%
   scale_y_continuous(limits = c(0, 5), breaks = 0:5) +
   labs(
     title    = "Power users: median score by conversation outcome",
-    subtitle = paste0("Top 1% users (n = ", n_power, ") only"),
+    subtitle = paste0("Top 5% users (n = ", n_power, ") only"),
     x = NULL, y = "Median score"
   ) +
   base_theme +
   theme(legend.position = "none")
 
-save_fig(p_top1pct_score_outcome_median, "scores", "top1pct_score_by_outcome_median.png", width = 6, height = 5)
+save_fig(p_top5pct_score_outcome_median, "scores", "top5pct_score_by_outcome_median.png", width = 6, height = 5)
 
-p_top1pct_score_outcome_combined <- p_top1pct_score_outcome | p_top1pct_score_outcome_median
-save_fig(p_top1pct_score_outcome_combined, "scores", "top1pct_score_by_outcome_mean_median.png", width = 11, height = 5)
+p_top5pct_score_outcome_combined <- p_top5pct_score_outcome | p_top5pct_score_outcome_median
+save_fig(p_top5pct_score_outcome_combined, "scores", "top5pct_score_by_outcome_mean_median.png", width = 11, height = 5)
 
 
 # -- 4e. Mean score by year --
@@ -394,19 +395,19 @@ score_by_year_pu <- ce_pu %>%
     .groups = "drop"
   )
 
-save_csv(score_by_year_pu, "scores", "top1pct_score_by_year.csv")
+save_csv(score_by_year_pu, "scores", "top5pct_score_by_year.csv")
 
-p_top1pct_score_year <- score_by_year_pu %>%
+p_top5pct_score_year <- score_by_year_pu %>%
   ggplot(aes(x = factor(year), y = mean_score)) +
-  geom_col(fill = col_power) +
+  geom_col(fill = col_power_2) +
   labs(
     title    = "Power users: mean score by year",
-    subtitle = paste0("Top 1% users (n = ", n_power, ") only"),
+    subtitle = paste0("Top 5% users (n = ", n_power, ") only"),
     x = "Year", y = "Mean score"
   ) +
   base_theme
 
-save_fig(p_top1pct_score_year, "scores", "top1pct_score_by_year.png")
+save_fig(p_top5pct_score_year, "scores", "top5pct_score_by_year.png")
 
 
 # === SECTION 5: TEXT LENGTH ===
@@ -425,7 +426,7 @@ text_summary_pu <- ce_pu %>%
     .groups = "drop"
   )
 
-save_csv(text_summary_pu, "text_length", "top1pct_text_length_by_type_and_outcome.csv")
+save_csv(text_summary_pu, "text_length", "top5pct_text_length_by_type_and_outcome.csv")
 
 # Word count histogram by outcome (trimmed at 99th percentile; style mirrors full sample)
 bin_width <- 10
@@ -440,7 +441,7 @@ word_count_bins_pu <- ce_pu %>%
   count(bin, outcome) %>%
   pivot_wider(names_from = outcome, values_from = n, values_fill = 0)
 
-p_top1pct_wordcount <- word_count_bins_pu %>%
+p_top5pct_wordcount <- word_count_bins_pu %>%
   ggplot(aes(x = bin)) +
   geom_col(aes(y = `On-track`, fill = "On-track"), width = bin_width * 0.9) +
   geom_point(aes(y = Awry, colour = "Awry"), size = 1.5) +
@@ -448,13 +449,54 @@ p_top1pct_wordcount <- word_count_bins_pu %>%
   scale_colour_manual(values = c("Awry"     = "#E53935"), name = "Outcome") +
   labs(
     title    = "Power users: word count distribution by outcome (trimmed at 99th percentile)",
-    subtitle = paste0("Top 1% users (n = ", n_power, ") only"),
+    subtitle = paste0("Top 5% users (n = ", n_power, ") only"),
     x = "Word count", y = "Count"
   ) +
   base_theme +
   theme(legend.position = "top")
 
-save_fig(p_top1pct_wordcount, "text_length", "top1pct_word_count_by_outcome.png")
+save_fig(p_top5pct_wordcount, "text_length", "top5pct_word_count_by_outcome.png")
+
+# -- 5c. Word count vs score, per power user --
+# Aggregated at the user level (not comment level) to avoid overplotting and
+# to match the style of the other power-user scatters in this script.
+
+wordcount_score_pu <- ce_pu %>%
+  group_by(speaker) %>%
+  summarise(
+    n_comments      = n(),
+    mean_word_count = round(mean(word_count, na.rm = TRUE), 1),
+    mean_score      = round(mean(score, na.rm = TRUE), 2),
+    .groups = "drop"
+  )
+
+save_csv(wordcount_score_pu, "text_length", "top5pct_wordcount_vs_score.csv")
+
+cor_wordcount_score <- cor(wordcount_score_pu$mean_word_count,
+                           wordcount_score_pu$mean_score,
+                           use = "complete.obs")
+
+cat(sprintf("  Correlation (mean word count vs mean score), top 5%% users: r = %.3f\n",
+            cor_wordcount_score))
+
+p_wordcount_score_pu <- wordcount_score_pu %>%
+  ggplot(aes(x = mean_word_count, y = mean_score)) +
+  geom_point(colour = col_power_2, alpha = 0.7, size = 2.5) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE,
+              colour = "darkred", linewidth = 0.8, linetype = "dashed") +
+  annotate("text",
+           x = max(wordcount_score_pu$mean_word_count) * 0.95,
+           y = max(wordcount_score_pu$mean_score) * 0.95,
+           label = sprintf("r = %.2f", cor_wordcount_score),
+           hjust = 1, size = 4, fontface = "bold", colour = "darkred") +
+  labs(
+    title    = "Power users: mean word count vs mean score",
+    subtitle = paste0("Top 5% users (n = ", n_power, "), aggregated per user"),
+    x = "Mean word count per user", y = "Mean score per user"
+  ) +
+  base_theme
+
+save_fig(p_wordcount_score_pu, "text_length", "top5pct_wordcount_vs_score.png", width = 8, height = 6)
 
 
 # === SECTION 6: DELTA RATE SCATTER ===
@@ -476,23 +518,25 @@ cat(sprintf("  Users excluded from scatter (no delta flair): %d\n", n_no_flair))
 
 save_csv(
   delta_scatter %>% select(speaker, n_comments, max_delta, delta_rate),
-  "user_participation", "top1pct_delta_scatter_data.csv"
+  "user_participation", "top5pct_delta_scatter_data.csv"
 )
 
-# Annotate the #1 poster
-top_commenter <- delta_scatter %>% arrange(desc(n_comments)) %>% slice(1)
+delta_scatter_valid <- delta_scatter %>% filter(!is.na(delta_rate))
+cor_delta_rate <- cor(log10(delta_scatter_valid$n_comments), delta_scatter_valid$delta_rate)
+cat(sprintf("  Correlation (log10 comments vs delta rate), top 5%% users: r = %.3f\n", cor_delta_rate))
 
-p_top1pct_delta_scatter <- delta_scatter %>%
-  filter(!is.na(delta_rate)) %>%
+p_top5pct_delta_scatter <- delta_scatter_valid %>%
   ggplot(aes(x = n_comments, y = delta_rate)) +
-  geom_point(colour = col_power, alpha = 0.7, size = 2.5) +
-  scale_x_log10(
-    labels = scales::comma,
-    breaks = c(50, 100, 250, 500, 1000, 3000)
-  ) +
+  geom_point(colour = col_power_2, alpha = 0.7, size = 2.5) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE,
+              colour = "darkred", linewidth = 0.8, linetype = "dashed") +
+  annotate("text", x = Inf, y = Inf,
+           label = sprintf("r = %.2f (log scale)", cor_delta_rate),
+           hjust = 1.1, vjust = 1.8, size = 4, fontface = "bold", colour = "darkred") +
+  scale_x_log10(labels = scales::comma, breaks = c(50, 100, 250, 500, 1000, 3000)) +
   scale_y_continuous(labels = function(x) sprintf("%.2f", x)) +
   labs(
-    title    = "Power users (top 1%): comment volume vs delta rate",
+    title    = "Power users (top 5%): comment volume vs delta rate",
     subtitle = paste0(
       "x-axis log-scaled. y = career deltas (from flair) / comments in this dataset.\n",
       "Approximates persuasion rate per comment; assumes in-sample activity ~ overall activity.\n",
@@ -503,7 +547,7 @@ p_top1pct_delta_scatter <- delta_scatter %>%
   ) +
   base_theme
 
-save_fig(p_top1pct_delta_scatter, "user_participation", "top1pct_delta_scatter.png",
+save_fig(p_top5pct_delta_scatter, "user_participation", "top5pct_delta_scatter.png",
          width = 9, height = 6)
 
 
@@ -512,35 +556,39 @@ save_fig(p_top1pct_delta_scatter, "user_participation", "top1pct_delta_scatter.p
 cat("\n=== SCORE VS VOLUME SCATTER (POWER USERS) ===\n")
 
 # Per-user: mean score and awry participation rate (computed in Section 3b)
-top1pct_score_vol <- power_users %>%
-  left_join(
-    top1pct_awry_rate %>% select(speaker, pct_awry),
-    by = "speaker"
-  )
+top5pct_score_vol <- power_users %>%
+  left_join(top5pct_awry_rate %>% select(speaker, pct_awry), by = "speaker")
 
 save_csv(
-  top1pct_score_vol %>% select(speaker, n_comments, mean_score, pct_awry),
-  "scores", "top1pct_score_vs_volume_data.csv"
+  top5pct_score_vol %>% select(speaker, n_comments, mean_score, pct_awry),
+  "scores", "top5pct_score_vs_volume_data.csv"
 )
 
-# scatterplot: comment volume vs mean score 
-top1pct_score_vol <- top1pct_score_vol %>%
+top5pct_score_vol <- top5pct_score_vol %>%
   mutate(high_awry = ifelse(pct_awry >= 75, "≥75% awry", "<75% awry"))
 
-p_top1pct_score_vol <- top1pct_score_vol %>%
-  ggplot(aes(x = n_comments, y = mean_score, colour = high_awry)) +
-  geom_point(alpha = 0.8, size = 2.5) +
+cor_score_vol <- cor(log10(top5pct_score_vol$n_comments), top5pct_score_vol$mean_score)
+cat(sprintf("  Correlation (log10 comments vs mean score), top 5%% users: r = %.3f\n", cor_score_vol))
+
+p_top5pct_score_vol <- top5pct_score_vol %>%
+  ggplot(aes(x = n_comments, y = mean_score)) +
+  geom_point(aes(colour = high_awry), alpha = 0.8, size = 2.5) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE,
+              colour = "black", linewidth = 0.8, linetype = "dashed") +
+  annotate("text", x = Inf, y = -Inf,
+           label = sprintf("r = %.2f (log scale)", cor_score_vol),
+           hjust = 1.1, vjust = -1, size = 4, fontface = "bold", colour = "black") +
   scale_x_log10(
     labels = scales::comma,
     breaks = c(50, 100, 250, 500, 1000, 3000),
     expand = expansion(mult = c(0.05, 0.12))
   ) +
   scale_colour_manual(
-    values = c("≥75% awry" = col_awry, "<75% awry" = col_power),
+    values = c("≥75% awry" = col_awry, "<75% awry" = col_power_2),
     name   = "Participation in 'awry' threads"
   ) +
   labs(
-    title    = "Power users (top 1%): comment volume vs mean score",
+    title    = "Power users (top 5%): comment volume vs mean score",
     subtitle = "x-axis log-scaled. Red = users whose own comments are in awry conversations ≥75% of the time.",
     x        = "Number of comments (log scale)",
     y        = "Mean comment score"
@@ -554,4 +602,4 @@ p_top1pct_score_vol <- top1pct_score_vol %>%
     legend.box.margin  = margin(4, 6, 4, 6)
   )
 
-save_fig(p_top1pct_score_vol, "scores", "top1pct_score_vs_volume.png", width = 8, height = 6)
+save_fig(p_top5pct_score_vol, "scores", "top5pct_score_vs_volume.png", width = 8, height = 6)

@@ -44,7 +44,8 @@ base_theme <- theme_pubr() +
 col_awry    <- "#EF5350"
 col_ontrack <- "#81C784"
 col_neutral <- "#5C85D6"
-col_power <- "#B8860B"
+col_power <- "#B8860B" # Top 1% users
+col_power_2 <- "#CD7F32" # Top 5% users
 col_deleted <- "#757575"  
 
 # -- 2. Load data --
@@ -456,6 +457,47 @@ p_top1pct_wordcount <- word_count_bins_pu %>%
 
 save_fig(p_top1pct_wordcount, "text_length", "top1pct_word_count_by_outcome.png")
 
+# -- 5c. Word count vs score, per power user --
+# Aggregated at the user level (not comment level) to avoid overplotting and
+# to match the style of the other power-user scatters in this script.
+
+wordcount_score_pu <- ce_pu %>%
+  group_by(speaker) %>%
+  summarise(
+    n_comments      = n(),
+    mean_word_count = round(mean(word_count, na.rm = TRUE), 1),
+    mean_score      = round(mean(score, na.rm = TRUE), 2),
+    .groups = "drop"
+  )
+
+save_csv(wordcount_score_pu, "text_length", "top1pct_wordcount_vs_score.csv")
+
+cor_wordcount_score <- cor(wordcount_score_pu$mean_word_count,
+                           wordcount_score_pu$mean_score,
+                           use = "complete.obs")
+
+cat(sprintf("  Correlation (mean word count vs mean score), top 1%% users: r = %.3f\n",
+            cor_wordcount_score))
+
+p_wordcount_score_pu <- wordcount_score_pu %>%
+  ggplot(aes(x = mean_word_count, y = mean_score)) +
+  geom_point(colour = col_power, alpha = 0.7, size = 2.5) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE,
+              colour = "darkred", linewidth = 0.8, linetype = "dashed") +
+  annotate("text",
+           x = max(wordcount_score_pu$mean_word_count) * 0.95,
+           y = max(wordcount_score_pu$mean_score) * 0.95,
+           label = sprintf("r = %.2f", cor_wordcount_score),
+           hjust = 1, size = 4, fontface = "bold", colour = "darkred") +
+  labs(
+    title    = "Power users: mean word count vs mean score",
+    subtitle = paste0("Top 1% users (n = ", n_power, "), aggregated per user"),
+    x = "Mean word count per user", y = "Mean score per user"
+  ) +
+  base_theme
+
+save_fig(p_wordcount_score_pu, "text_length", "top1pct_wordcount_vs_score.png", width = 8, height = 6)
+
 
 # === SECTION 6: DELTA RATE SCATTER ===
 
@@ -479,17 +521,19 @@ save_csv(
   "user_participation", "top1pct_delta_scatter_data.csv"
 )
 
-# Annotate the #1 poster
-top_commenter <- delta_scatter %>% arrange(desc(n_comments)) %>% slice(1)
+delta_scatter_valid <- delta_scatter %>% filter(!is.na(delta_rate))
+cor_delta_rate <- cor(log10(delta_scatter_valid$n_comments), delta_scatter_valid$delta_rate)
+cat(sprintf("  Correlation (log10 comments vs delta rate), top 1%% users: r = %.3f\n", cor_delta_rate))
 
-p_top1pct_delta_scatter <- delta_scatter %>%
-  filter(!is.na(delta_rate)) %>%
+p_top1pct_delta_scatter <- delta_scatter_valid %>%
   ggplot(aes(x = n_comments, y = delta_rate)) +
   geom_point(colour = col_power, alpha = 0.7, size = 2.5) +
-  scale_x_log10(
-    labels = scales::comma,
-    breaks = c(50, 100, 250, 500, 1000, 3000)
-  ) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE,
+              colour = "darkred", linewidth = 0.8, linetype = "dashed") +
+  annotate("text", x = Inf, y = Inf,
+           label = sprintf("r = %.2f (log scale)", cor_delta_rate),
+           hjust = 1.1, vjust = 1.8, size = 4, fontface = "bold", colour = "darkred") +
+  scale_x_log10(labels = scales::comma, breaks = c(50, 100, 250, 500, 1000, 3000)) +
   scale_y_continuous(labels = function(x) sprintf("%.2f", x)) +
   labs(
     title    = "Power users (top 1%): comment volume vs delta rate",
@@ -513,23 +557,27 @@ cat("\n=== SCORE VS VOLUME SCATTER (POWER USERS) ===\n")
 
 # Per-user: mean score and awry participation rate (computed in Section 3b)
 top1pct_score_vol <- power_users %>%
-  left_join(
-    top1pct_awry_rate %>% select(speaker, pct_awry),
-    by = "speaker"
-  )
+  left_join(top1pct_awry_rate %>% select(speaker, pct_awry), by = "speaker")
 
 save_csv(
   top1pct_score_vol %>% select(speaker, n_comments, mean_score, pct_awry),
   "scores", "top1pct_score_vs_volume_data.csv"
 )
 
-# scatterplot: comment volume vs mean score 
 top1pct_score_vol <- top1pct_score_vol %>%
   mutate(high_awry = ifelse(pct_awry >= 75, "≥75% awry", "<75% awry"))
 
+cor_score_vol <- cor(log10(top1pct_score_vol$n_comments), top1pct_score_vol$mean_score)
+cat(sprintf("  Correlation (log10 comments vs mean score), top 1%% users: r = %.3f\n", cor_score_vol))
+
 p_top1pct_score_vol <- top1pct_score_vol %>%
-  ggplot(aes(x = n_comments, y = mean_score, colour = high_awry)) +
-  geom_point(alpha = 0.8, size = 2.5) +
+  ggplot(aes(x = n_comments, y = mean_score)) +
+  geom_point(aes(colour = high_awry), alpha = 0.8, size = 2.5) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE,
+              colour = "black", linewidth = 0.8, linetype = "dashed") +
+  annotate("text", x = Inf, y = -Inf,
+           label = sprintf("r = %.2f (log scale)", cor_score_vol),
+           hjust = 1.1, vjust = -1, size = 4, fontface = "bold", colour = "black") +
   scale_x_log10(
     labels = scales::comma,
     breaks = c(50, 100, 250, 500, 1000, 3000),

@@ -51,6 +51,10 @@ base_theme <- theme_pubr() +
 col_awry    <- "#EF5350"
 col_ontrack <- "#81C784"
 col_neutral <- "#5C85D6"
+col_power <- "#B8860B" # Top 1% users
+col_power_2 <- "#CD7F32" # Top 5% users
+col_deleted <- "#757575"  
+
 
 
 # -- 2. Load data --
@@ -76,13 +80,13 @@ n_pairs   <- n_distinct(conv$pair_id)
 headline <- tibble(
   Metric = c(
     "Total comments", "Total conversations", "Unique conversation pairs",
-    "Unique speakers", "Date range start", "Date range end",
+    "Unique users (excluding deleted accounts)", "Date range start", "Date range end",
     "Awry conversations", "On-track conversations", "Awry rate",
     "Train / Val / Test", "Mean comment score", "Median comment score"
   ),
   Value = c(
     fmt(nrow(ce)), fmt(nrow(conv)), fmt(n_pairs),
-    fmt(n_distinct(ce$speaker)),
+    fmt(n_distinct(ce$speaker[ce$speaker != "[deleted]"])),
     format(min(ce$timestamp_dt), "%b %Y"),
     format(max(ce$timestamp_dt), "%b %Y"),
     fmt(n_awry), fmt(n_ontrack),
@@ -92,6 +96,8 @@ headline <- tibble(
     fmt(median(ce$score, na.rm = TRUE))
   )
 )
+
+save_csv(headline, "headline_stats", "headline_stats.csv")
 
 save_csv(headline, "headline_stats", "headline_stats.csv")
 
@@ -183,34 +189,41 @@ q95 <- quantile(user_stats$n_comments, 0.95)
 q90 <- quantile(user_stats$n_comments, 0.90)
 
 # Volume summary: one-time commenters and top-% share
-n_known_comments <- sum(ce$speaker != "[deleted]")
-pct_comments <- function(users_subset) round(100 * sum(users_subset) / n_known_comments, 1)
+# Note: all "Pct_of_all_comments" values are relative to the FULL corpus
+# (nrow(ce), including [deleted]'s comments). This keeps every row — including
+# the [deleted] row — on the same basis. As a result, "All users" no longer
+# sums to exactly 100%; it and "[deleted] accounts" sum to 100% between them.
+pct_comments <- function(users_subset) round(100 * sum(users_subset) / nrow(ce), 1)
 pct_users    <- function(n)            round(100 * n / nrow(user_stats), 1)
 
+n_deleted_comments <- sum(ce$speaker == "[deleted]")
 
 volume_summary <- tibble(
   Group = c("All users", "One-time commenters",
-            "Top 1% by volume", "Top 5%", "Top 10%"),
+            "Top 1% by volume", "Top 5%", "Top 10%", "[deleted] accounts"),
   N_users = c(
     nrow(user_stats),
     sum(user_stats$n_comments == 1),
     sum(user_stats$n_comments >= q99),
     sum(user_stats$n_comments >= q95),
-    sum(user_stats$n_comments >= q90)
+    sum(user_stats$n_comments >= q90),
+    NA
   ),
   Pct_of_all_users = c(
     100,
     pct_users(sum(user_stats$n_comments == 1)),
     pct_users(sum(user_stats$n_comments >= q99)),
     pct_users(sum(user_stats$n_comments >= q95)),
-    pct_users(sum(user_stats$n_comments >= q90))
+    pct_users(sum(user_stats$n_comments >= q90)),
+    NA
   ),
   Pct_of_all_comments = c(
-    100,
+    pct_comments(user_stats$n_comments),
     pct_comments(user_stats$n_comments[user_stats$n_comments == 1]),
     pct_comments(user_stats$n_comments[user_stats$n_comments >= q99]),
     pct_comments(user_stats$n_comments[user_stats$n_comments >= q95]),
-    pct_comments(user_stats$n_comments[user_stats$n_comments >= q90])
+    pct_comments(user_stats$n_comments[user_stats$n_comments >= q90]),
+    pct_comments(n_deleted_comments)
   )
 )
 
@@ -254,7 +267,7 @@ n_top1 <- nrow(top1pct_users)
 p_top1pct <- top1pct_users %>%
   mutate(rank = row_number()) %>%
   ggplot(aes(x = rank, y = n_comments)) +
-  geom_col(fill = col_neutral, width = 0.8) +
+  geom_col(fill = col_power, width = 0.8) +
   geom_text(data = top_user,
             aes(label = paste0("#1: ", scales::comma(n_comments), " comments")),
             vjust = -0.4, hjust = 0, size = 3.5, fontface = "bold") +
@@ -274,6 +287,44 @@ p_top1pct <- top1pct_users %>%
   base_theme
 
 save_fig(p_top1pct, "user_participation", "top1pct_users.png", width = 10, height = 6)
+
+
+# Comments per user histogram (top 5%)
+top5pct_users <- user_stats %>%
+  filter(n_comments >= q95) %>%
+  arrange(desc(n_comments)) %>%
+  mutate(rank = factor(row_number(), levels = rev(seq_len(sum(n_comments >= q95)))))
+
+mean_top5 <- round(mean(top5pct_users$n_comments), 0)
+
+top_user_5 <- top5pct_users %>% mutate(rank = row_number()) %>% filter(rank == 1)
+
+n_top5  <- nrow(top5pct_users)
+x_max_5 <- ceiling(n_top5 / 300) * 300   # rounds up to nearest 300 — clean breaks + whitespace
+
+p_top5pct <- top5pct_users %>%
+  mutate(rank = row_number()) %>%
+  ggplot(aes(x = rank, y = n_comments)) +
+  geom_col(fill = col_power_2, width = 0.8) +
+  geom_text(data = top_user_5,
+            aes(label = paste0("#1: ", scales::comma(n_comments), " comments")),
+            vjust = -0.4, hjust = 0, size = 3.5, fontface = "bold") +
+  geom_hline(yintercept = mean_top5, linetype = "dashed",
+             color = "darkred", linewidth = 0.8) +
+  annotate("text",
+           x = x_max_5 * 0.94, y = mean_top5 * 2,
+           label = paste0("Mean: ", fmt(mean_top5)),
+           color = "darkred", size = 3.5, hjust = 1) +
+  scale_y_log10(labels = scales::comma,
+                breaks = c(1, 10, 100, 1000),
+                limits = c(NA, 1000)) +
+  scale_x_continuous(breaks = c(1, seq(300, x_max_5, by = 300)),
+                     limits = c(0.5, x_max_5 + 0.5)) +
+  labs(title = paste0("Top 5% users by comment volume (n = ", n_top5, ", log scale)"),
+       x = "Rank", y = "Number of comments (log scale)") +
+  base_theme
+
+save_fig(p_top5pct, "user_participation", "top5pct_users.png", width = 10, height = 6)
 
 # Top 50 users by comment volume — [deleted] included deliberately here to
 # show the artefact. It is NOT a single user, so it
@@ -299,7 +350,7 @@ p_top_users <- top50_with_deleted %>%
   geom_col() +
   geom_text(aes(label = scales::comma(n_comments)),
             hjust = -0.15, size = 2.5) +
-  scale_fill_manual(values = c("FALSE" = col_neutral, "TRUE" = col_awry), guide = "none") +
+  scale_fill_manual(values = c("FALSE" = col_neutral, "TRUE" = col_deleted), guide = "none") +
   scale_y_log10(labels = scales::comma,
                 limits = c(NA, max(top50_with_deleted$n_comments) * 4)) +
   coord_flip() +
@@ -411,6 +462,7 @@ ct_by_group <- function(data, group_label) {
 comment_type_by_user_group <- bind_rows(
   ct_by_group(ce, "All users"),
   ct_by_group(ce %>% filter(speaker %in% top1pct_users$speaker), "Top 1%"),
+  ct_by_group(ce %>% filter(speaker %in% top5pct_speakers),      "Top 5%"),
   ct_by_group(ce %>% filter(speaker %in% one_time_speakers),     "One-time commenters")
 )
 
@@ -677,13 +729,15 @@ wordcount_by_user_type <- ce %>%
 
 save_csv(wordcount_by_user_type, "text_length", "wordcount_by_user_type.csv")
 
+
+
 # Plot top 1% vs rest
 
 p_wordcount_users <- wordcount_by_user_type %>%
   ggplot(aes(x = user_type, y = mean_words, fill = user_type)) +
   geom_col(width = 0.5) +
   geom_text(aes(label = sprintf("%.1f", mean_words)), vjust = -0.4, size = 4, fontface = "bold") +
-  scale_fill_manual(values = c("Top 1%" = "#084594", "Bottom 99%" = "#90CAF9")) +
+  scale_fill_manual(values = c("Top 1%" = col_power, "Bottom 99%" = "#90CAF9")) +
   scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
   labs(title = "Mean word count by user type",
        subtitle = "User type based on comment volume (top 1% = 246 users)",
@@ -692,6 +746,42 @@ p_wordcount_users <- wordcount_by_user_type %>%
   theme(legend.position = "none")
 
 save_fig(p_wordcount_users, "text_length", "wordcount_by_user_type.png", width = 6, height = 5)
+
+# Compare top 1% (n=246) and top 5% (n=1,352) users vs the rest on verbosity
+
+wordcount_by_user_tier <- ce %>%
+  filter(speaker != "[deleted]") %>%
+  mutate(user_type = case_when(
+    speaker %in% top1pct_speakers ~ "Top 1%",
+    speaker %in% top5pct_speakers ~ "Top 5% (excl. Top 1%)",
+    TRUE ~ "Bottom 95%"
+  )) %>%
+  mutate(user_type = factor(user_type, levels = c("Bottom 95%", "Top 5% (excl. Top 1%)", "Top 1%"))) %>%
+  group_by(user_type) %>%
+  summarise(
+    n_comments   = n(),
+    mean_words   = round(mean(word_count, na.rm = TRUE), 1),
+    median_words = median(word_count, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+save_csv(wordcount_by_user_tier, "text_length", "wordcount_by_user_tier.csv")
+
+p_wordcount_users_tier <- wordcount_by_user_tier %>%
+  ggplot(aes(x = user_type, y = mean_words, fill = user_type)) +
+  geom_col(width = 0.5) +
+  geom_text(aes(label = sprintf("%.1f", mean_words)), vjust = -0.4, size = 4, fontface = "bold") +
+  scale_fill_manual(values = c("Bottom 95%" = "#90CAF9",
+                               "Top 5% (excl. Top 1%)" = col_power_2,
+                               "Top 1%" = col_power)) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(title = "Mean word count by user activity tier",
+       subtitle = "Three mutually-exclusive tiers based on comment volume",
+       x = NULL, y = "Mean word count") +
+  base_theme +
+  theme(legend.position = "none")
+
+save_fig(p_wordcount_users_tier, "text_length", "wordcount_by_user_tier.png", width = 7, height = 5)
 
 # === SECTION 7: MISSINGNESS ===
 

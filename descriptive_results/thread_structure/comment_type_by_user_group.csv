@@ -5,6 +5,9 @@ All users,nested_reply,77637,66.5
 Top 1%,root,5089,26.4
 Top 1%,top_level_reply,1321,6.8
 Top 1%,nested_reply,12889,66.8
+Top 5%,root,8797,20.8
+Top 5%,top_level_reply,4501,10.6
+Top 5%,nested_reply,29066,68.6
 One-time commenters,root,2433,28.9
 One-time commenters,top_level_reply,2272,27
 One-time commenters,nested_reply,3712,44.1

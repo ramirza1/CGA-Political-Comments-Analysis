@@ -47,6 +47,9 @@ base_theme <- theme_pubr() +
 col_awry    <- "#EF5350"
 col_ontrack <- "#81C784"
 col_neutral <- "#5C85D6"
+col_power <- "#B8860B" # Top 1% users
+col_power_2 <- "#CD7F32" # Top 5% users
+col_deleted <- "#757575"  
 
 # -- 1. Load data and isolate [deleted] --
 message("Loading prepped data...")
@@ -101,7 +104,7 @@ headline_del <- tibble(
   )
 )
 
-save_csv(headline_del, "headline_stats", "deleted_headline_stats.csv")
+save_csv(headline_del, "headline_stats", "deleted_accounts_headline_stats.csv")
 
 cat(sprintf(
   "\n  Awry rate for [deleted]-participated conversations: %.1f%% (corpus baseline: 50.0%%)\n",
@@ -122,11 +125,11 @@ temporal_del_monthly <- ce_del %>%
   ) %>%
   mutate(year_month = as.Date(sprintf("%d-%02d-01", year, month)))
 
-save_csv(temporal_del_monthly, "temporal", "deleted_temporal_monthly.csv")
+save_csv(temporal_del_monthly, "temporal", "deleted_accounts_temporal_monthly.csv")
 
 p_del_comments <- temporal_del_monthly %>%
   ggplot(aes(x = year_month, y = n_comments)) +
-  geom_col(fill = col_neutral) +
+  geom_col(fill = col_deleted) +
   scale_x_date(date_breaks = "6 months", date_labels = "%b %Y") +
   labs(title = "[deleted]: comments by month", x = NULL, y = "Number of comments") +
   base_theme +
@@ -134,7 +137,7 @@ p_del_comments <- temporal_del_monthly %>%
 
 p_del_conversations <- temporal_del_monthly %>%
   ggplot(aes(x = year_month, y = n_conversations)) +
-  geom_col(fill = col_neutral) +
+  geom_col(fill = col_deleted) +
   scale_x_date(date_breaks = "6 months", date_labels = "%b %Y") +
   labs(title = "[deleted]: conversations participated in by month",
        x = NULL, y = "Number of conversations") +
@@ -142,8 +145,41 @@ p_del_conversations <- temporal_del_monthly %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 p_del_temporal_combined <- p_del_comments / p_del_conversations
-save_fig(p_del_temporal_combined, "temporal", "deleted_temporal_combined.png",
+save_fig(p_del_temporal_combined, "temporal", "deleted_accounts_temporal_combined.png",
          width = 9, height = 8)
+
+# [deleted]: comments by year, and as a share of all comments that year.
+# "Unique users by year" doesn't apply here — [deleted] is always exactly
+# one speaker value, so that count would trivially be 1 every year.
+
+deleted_by_year <- ce %>%
+  group_by(year) %>%
+  summarise(
+    n_comments_total   = n(),
+    n_deleted_comments = sum(speaker == "[deleted]"),
+    pct_deleted         = round(100 * n_deleted_comments / n_comments_total, 2),
+    .groups = "drop"
+  )
+
+save_csv(deleted_by_year, "temporal", "deleted_accounts_by_year.csv")
+
+p_deleted_count_year <- deleted_by_year %>%
+  ggplot(aes(x = factor(year), y = n_deleted_comments)) +
+  geom_col(fill = col_deleted) +
+  scale_y_continuous(limits = c(0, 1000)) +
+  labs(title = "[deleted]: comments by year", x = "Year", y = "Number of comments") +
+  base_theme
+
+p_deleted_pct_year <- deleted_by_year %>%
+  ggplot(aes(x = factor(year), y = pct_deleted)) +
+  geom_col(fill = col_deleted) +
+  scale_y_continuous(limits = c(0, 5)) +
+  labs(title = "[deleted]: % of all comments by year",
+       x = "Year", y = "% of comments") +
+  base_theme
+
+p_deleted_year_combined <- p_deleted_count_year / p_deleted_pct_year
+save_fig(p_deleted_year_combined, "temporal", "deleted_accounts_by_year.png", width = 8, height = 8)
 
 
 # === SECTION 3: SCORES ===
@@ -159,7 +195,7 @@ score_summary_del <- ce_del %>%
     pct_zero_or_below = round(100 * mean(score <= 0, na.rm = TRUE), 1)
   )
 
-save_csv(score_summary_del, "scores", "deleted_score_summary.csv")
+save_csv(score_summary_del, "scores", "deleted_accounts_score_summary.csv")
 
 # Mean score by conversation outcome — the key comparison.
 # If [deleted] comments disproportionately cluster in awry conversations
@@ -177,7 +213,7 @@ score_by_outcome_del <- ce_del %>%
     .groups = "drop"
   )
 
-save_csv(score_by_outcome_del, "scores", "deleted_score_by_outcome.csv")
+save_csv(score_by_outcome_del, "scores", "deleted_accounts_score_by_outcome.csv")
 
 p_del_score_outcome <- score_by_outcome_del %>%
   ggplot(aes(x = outcome, y = mean_score, fill = outcome)) +
@@ -192,7 +228,7 @@ p_del_score_outcome <- score_by_outcome_del %>%
   base_theme +
   theme(legend.position = "none")
 
-save_fig(p_del_score_outcome, "scores", "deleted_score_by_outcome.png", width = 6, height = 5)
+save_fig(p_del_score_outcome, "scores", "deleted_accounts_score_by_outcome.png", width = 6, height = 5)
 
 # and Median score
 
@@ -209,7 +245,7 @@ p_del_score_outcome_median <- score_by_outcome_del %>%
   base_theme +
   theme(legend.position = "none")
 
-save_fig(p_del_score_outcome_median, "scores", "deleted_score_by_outcome_median.png", width = 6, height = 5)
+save_fig(p_del_score_outcome_median, "scores", "deleted_accounts_score_by_outcome_median.png", width = 6, height = 5)
 
 p_del_score_outcome_combined <- p_del_score_outcome | p_del_score_outcome_median
-save_fig(p_del_score_outcome_combined, "scores", "deleted_score_by_outcome_mean_median.png", width = 11, height = 5)
+save_fig(p_del_score_outcome_combined, "scores", "deleted_accounts_score_by_outcome_mean_median.png", width = 11, height = 5)
