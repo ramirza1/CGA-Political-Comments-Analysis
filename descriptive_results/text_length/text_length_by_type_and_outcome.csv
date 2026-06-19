@@ -1,0 +1,7 @@
+comment_type,outcome,mean_words,median_words,mean_chars,median_chars
+root,Awry,144.7,92,852,539
+root,On-track,127.1,86,747,507
+top_level_reply,Awry,80.7,50,472,286
+top_level_reply,On-track,73.1,48,424,274
+nested_reply,Awry,86.8,49,507,285
+nested_reply,On-track,78.1,48,455,277

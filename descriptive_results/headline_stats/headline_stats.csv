@@ -1,0 +1,13 @@
+Metric,Value
+Total comments,"116,793"
+Total conversations,"19,578"
+Unique conversation pairs,"19,578"
+Unique speakers,"24,555"
+Date range start,Aug 2015
+Date range end,Dec 2022
+Awry conversations,"9,789"
+On-track conversations,"9,789"
+Awry rate,50.0%
+Train / Val / Test,3868 / 11802 / 3908
+Mean comment score,19.03
+Median comment score,2

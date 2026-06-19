@@ -1,0 +1,7 @@
+comment_type,has_removed_comment,n,pct,outcome
+root,FALSE,9789,17.6,On-track
+root,TRUE,9789,16,Awry
+top_level_reply,FALSE,9789,17.6,On-track
+top_level_reply,TRUE,9789,16,Awry
+nested_reply,FALSE,36083,64.8,On-track
+nested_reply,TRUE,41554,68,Awry
