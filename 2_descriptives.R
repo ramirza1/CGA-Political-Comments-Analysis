@@ -76,12 +76,14 @@ cat("\n=== HEADLINE STATS ===\n")
 n_awry    <- sum(conv$has_removed_comment)
 n_ontrack <- sum(!conv$has_removed_comment)
 n_pairs   <- n_distinct(conv$pair_id)
+n_removed_comments <- sum(ce$is_removed_comment)
 
 headline <- tibble(
   Metric = c(
     "Total comments", "Total conversations", "Unique conversation pairs",
     "Unique users (excluding deleted accounts)", "Date range start", "Date range end",
     "Awry conversations", "On-track conversations", "Awry rate",
+    "Removed comment rate (% of all comments)",
     "Train / Val / Test", "Mean comment score", "Median comment score"
   ),
   Value = c(
@@ -91,6 +93,7 @@ headline <- tibble(
     format(max(ce$timestamp_dt), "%b %Y"),
     fmt(n_awry), fmt(n_ontrack),
     sprintf("%.1f%%", 100 * n_awry / nrow(conv)),
+    sprintf("%.1f%%", 100 * n_removed_comments / nrow(ce)),
     paste(table(conv$split), collapse = " / "),
     fmt(mean(ce$score, na.rm = TRUE)),
     fmt(median(ce$score, na.rm = TRUE))
@@ -98,9 +101,6 @@ headline <- tibble(
 )
 
 save_csv(headline, "headline_stats", "headline_stats.csv")
-
-save_csv(headline, "headline_stats", "headline_stats.csv")
-
 
 # === SECTION 2: TEMPORAL ===
 
@@ -295,6 +295,7 @@ top5pct_users <- user_stats %>%
   arrange(desc(n_comments)) %>%
   mutate(rank = factor(row_number(), levels = rev(seq_len(sum(n_comments >= q95)))))
 
+top5pct_speakers <- top5pct_users$speaker
 mean_top5 <- round(mean(top5pct_users$n_comments), 0)
 
 top_user_5 <- top5pct_users %>% mutate(rank = row_number()) %>% filter(rank == 1)
@@ -832,3 +833,110 @@ p_removed_year <- removed_by_year %>%
   base_theme
 
 save_fig(p_removed_year, "removed_content", "awry_conversations_by_year.png")
+
+
+# === SECTION 9: COMMENT-LEVEL ANALYSIS ===
+cat("\n=== COMMENT-LEVEL ANALYSIS ===\n")
+
+# Removal rate by user activity tier
+removal_by_user_tier <- ce %>%
+  filter(speaker != "[deleted]") %>%
+  mutate(user_type = case_when(
+    speaker %in% top1pct_speakers ~ "Top 1%",
+    speaker %in% top5pct_speakers ~ "Top 5% (excl. Top 1%)",
+    TRUE ~ "Bottom 95%"
+  )) %>%
+  mutate(user_type = factor(user_type, levels = c("Bottom 95%", "Top 5% (excl. Top 1%)", "Top 1%"))) %>%
+  group_by(user_type) %>%
+  summarise(
+    n_comments  = n(),
+    n_removed   = sum(is_removed_comment),
+    pct_removed = round(100 * n_removed / n_comments, 2),
+    .groups = "drop"
+  )
+
+save_csv(removal_by_user_tier, "comment_level", "removal_rate_by_user_tier.csv")
+
+p_removal_by_user_tier <- removal_by_user_tier %>%
+  ggplot(aes(x = user_type, y = pct_removed, fill = user_type)) +
+  geom_col(width = 0.5) +
+  geom_text(aes(label = sprintf("%.2f%%", pct_removed)), vjust = -0.4, size = 4, fontface = "bold") +
+  scale_fill_manual(values = c("Bottom 95%" = "#90CAF9",
+                               "Top 5% (excl. Top 1%)" = col_power_2,
+                               "Top 1%" = col_power)) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(title    = "% of own comments that were removed, by user activity tier",
+       subtitle = "Three mutually-exclusive tiers based on comment volume",
+       x = NULL, y = "% of comments removed") +
+  base_theme +
+  theme(legend.position = "none")
+
+save_fig(p_removal_by_user_tier, "comment_level", "removal_rate_by_user_tier.png", width = 7, height = 5)
+
+# Removal rate: [deleted] vs known users
+removal_deleted_vs_known <- ce %>%
+  mutate(group = ifelse(speaker == "[deleted]", "[deleted]", "Known users")) %>%
+  group_by(group) %>%
+  summarise(
+    n_comments  = n(),
+    n_removed   = sum(is_removed_comment),
+    pct_removed = round(100 * n_removed / n_comments, 2),
+    .groups = "drop"
+  )
+
+save_csv(removal_deleted_vs_known, "comment_level", "removal_rate_deleted_vs_known.csv")
+
+p_removal_deleted <- removal_deleted_vs_known %>%
+  ggplot(aes(x = group, y = pct_removed, fill = group)) +
+  geom_col(width = 0.5) +
+  geom_text(aes(label = sprintf("%.2f%%", pct_removed)), vjust = -0.4, size = 4, fontface = "bold") +
+  scale_fill_manual(values = c("[deleted]" = col_deleted, "Known users" = col_neutral)) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(title = "% of own comments removed: [deleted] vs others",
+       x = NULL, y = "% of comments removed") +
+  base_theme +
+  theme(legend.position = "none")
+
+save_fig(p_removal_deleted, "comment_level", "removal_rate_deleted_vs_known.png", width = 6, height = 5)
+
+
+# Score of the literal removed comment vs every other comment.
+# Distinct from score_by_outcome above: that compares ALL comments in awry
+# vs on-track conversations; this isolates just the one flagged comment
+# against everything else, including the other comments in its own thread.
+score_by_removed <- ce %>%
+  mutate(removed_label = ifelse(is_removed_comment, "Removed comment", "Not removed")) %>%
+  group_by(removed_label) %>%
+  summarise(
+    n_comments   = n(),
+    mean_score   = round(mean(score, na.rm = TRUE), 2),
+    median_score = median(score, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+save_csv(score_by_removed, "comment_level", "score_by_removed_comment.csv")
+
+p_score_removed <- score_by_removed %>%
+  ggplot(aes(x = removed_label, y = mean_score, fill = removed_label)) +
+  geom_col(width = 0.5) +
+  geom_text(aes(label = sprintf("%.1f", mean_score)), vjust = -0.4, size = 4, fontface = "bold") +
+  scale_fill_manual(values = c("Removed comment" = col_awry, "Not removed" = col_ontrack)) +
+  scale_y_continuous(limits = c(0, 50)) +
+  labs(title = "Mean score: removed comment vs all other comments",
+       x = NULL, y = "Mean score") +
+  base_theme +
+  theme(legend.position = "none")
+
+p_score_removed_median <- score_by_removed %>%
+  ggplot(aes(x = removed_label, y = median_score, fill = removed_label)) +
+  geom_col(width = 0.5) +
+  geom_text(aes(label = sprintf("%.0f", median_score)), vjust = -0.4, size = 4, fontface = "bold") +
+  scale_fill_manual(values = c("Removed comment" = col_awry, "Not removed" = col_ontrack)) +
+  scale_y_continuous(limits = c(0, 5), breaks = 0:5) +
+  labs(title = "Median score: removed comment vs all other comments",
+       x = NULL, y = "Median score") +
+  base_theme +
+  theme(legend.position = "none")
+
+p_score_removed_combined <- p_score_removed | p_score_removed_median
+save_fig(p_score_removed_combined, "comment_level", "score_by_removed_comment_mean_median.png", width = 11, height = 5)

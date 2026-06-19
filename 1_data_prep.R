@@ -73,6 +73,53 @@ comments_enriched <- comments %>%
     by = "conversation_id"
   )
 
+# Identify the specific removed comment within each awry conversation.
+# The corpus has no explicit per-comment "removed" flag; per the dataset's
+# construction methodology (Zhang et al. 2018), an awry conversation is one
+# where moderators removed the FINAL comment for a Rule 2 violation. We infer
+# the removed comment as the latest-timestamp comment within each
+# has_removed_comment == TRUE conversation.
+comments_enriched <- comments_enriched %>%
+  arrange(conversation_id, timestamp) %>%
+  group_by(conversation_id) %>%
+  mutate(is_removed_comment = has_removed_comment & row_number() == n()) %>%
+  ungroup()
+
+# Thread depth — a finer-grained complement to comment_type.
+# root = depth 0, top_level_reply = depth 1, nested_reply = depth 2+.
+# Computed by iteratively propagating depth along the reply_to chain, since
+# reply_to only gives the direct parent (one level), not the full ancestry.
+
+comments_enriched <- comments_enriched %>%
+  mutate(thread_depth = ifelse(comment_id == conversation_id, 0L, NA_integer_))
+
+repeat {
+  unresolved_before <- sum(is.na(comments_enriched$thread_depth))
+  if (unresolved_before == 0) break
+  
+  comments_enriched <- comments_enriched %>%
+    left_join(
+      comments_enriched %>% select(comment_id, parent_depth = thread_depth),
+      by = c("reply_to" = "comment_id")
+    ) %>%
+    mutate(thread_depth = ifelse(is.na(thread_depth) & !is.na(parent_depth),
+                                 parent_depth + 1L, thread_depth)) %>%
+    select(-parent_depth)
+  
+  unresolved_after <- sum(is.na(comments_enriched$thread_depth))
+  if (unresolved_after == unresolved_before) {
+    warning(sprintf(
+      "%d comments could not be resolved to a thread depth — check for broken reply_to chains.",
+      unresolved_after
+    ))
+    break
+  }
+}
+
+cat(sprintf("Thread depth resolved for %s of %s comments.\n",
+            format(sum(!is.na(comments_enriched$thread_depth)), big.mark = ","),
+            format(nrow(comments_enriched), big.mark = ",")))
+
 # Sanity check: every comment should match a conversation.
 n_unmatched <- sum(is.na(comments_enriched$has_removed_comment))
 if (n_unmatched > 0) {

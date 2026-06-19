@@ -8,6 +8,7 @@ Date range end,Dec 2022
 Awry conversations,"9,789"
 On-track conversations,"9,789"
 Awry rate,50.0%
+Removed comment rate (% of all comments),8.4%
 Train / Val / Test,3868 / 11802 / 3908
 Mean comment score,19.03
 Median comment score,2
