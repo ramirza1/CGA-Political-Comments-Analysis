@@ -1,0 +1,87 @@
+RQ1a — removed comment language
+Family: binomial | sparsity: 0.01 | seed: 5710
+
+--- skip-gram lambda.1se: 0.002800445 ---
+text terms selected: 56 
+
+         term         coef is_year
+          lol  0.319151356   FALSE
+        sorry  0.216891550   FALSE
+       please  0.190599958   FALSE
+         read  0.168073043   FALSE
+    literally  0.160275127   FALSE
+      comment  0.151110398   FALSE
+   irrelevant  0.146733041   FALSE
+    arguments  0.137904964   FALSE
+         shit  0.109124988   FALSE
+   discussion  0.105358007   FALSE
+         said  0.098498566   FALSE
+     year2020  0.080283284    TRUE
+ conversation  0.073432985   FALSE
+      talking  0.072529523   FALSE
+         yeah  0.072309383   FALSE
+      provide  0.067850923   FALSE
+       answer  0.060215984   FALSE
+        claim  0.055443655   FALSE
+        words  0.052932886   FALSE
+     year2021  0.051000839    TRUE
+      fucking  0.047597553   FALSE
+     evidence  0.045951134   FALSE
+     year2022  0.041984364    TRUE
+          yes  0.041564996   FALSE
+     year2019  0.041058261    TRUE
+     argument  0.039397593   FALSE
+         fact  0.034776506   FALSE
+         know  0.029522351   FALSE
+        asked  0.020481578   FALSE
+      clearly  0.019619721   FALSE
+       source  0.015750059   FALSE
+      science  0.015538075   FALSE
+        logic  0.014750232   FALSE
+     research  0.014602177   FALSE
+       trying  0.009721342   FALSE
+         post  0.007639413   FALSE
+     year2018  0.007122257    TRUE
+      calling  0.003951185   FALSE
+        comes -0.001059316   FALSE
+         feel -0.001296895   FALSE
+          way -0.002230679   FALSE
+       people -0.005386025   FALSE
+   reasonable -0.006928659   FALSE
+       coming -0.011295686   FALSE
+        often -0.011904956   FALSE
+        think -0.014279406   FALSE
+     probably -0.015741893   FALSE
+     year2017 -0.018738142    TRUE
+        issue -0.021408488   FALSE
+         edit -0.026621094   FALSE
+      similar -0.026913673   FALSE
+      general -0.026929183   FALSE
+         many -0.032203020   FALSE
+     year2016 -0.032665434    TRUE
+          may -0.049038910   FALSE
+       though -0.052110365   FALSE
+          lot -0.063266339   FALSE
+          etc -0.066868959   FALSE
+         fair -0.071957221   FALSE
+        agree -0.087801781   FALSE
+      example -0.090556235   FALSE
+      however -0.096813377   FALSE
+  necessarily -0.143839296   FALSE
+
+--- relaxed LASSO (skip-gram terms) ---
+# A tibble: 33 × 5
+   term       estimate std.error statistic  p.value
+   <chr>         <dbl>     <dbl>     <dbl>    <dbl>
+ 1 lol           0.439    0.0646      6.80 1.05e-11
+ 2 sorry         0.316    0.0634      4.98 6.26e- 7
+ 3 irrelevant    0.257    0.0733      3.50 4.58e- 4
+ 4 please        0.235    0.0549      4.28 1.91e- 5
+ 5 comment       0.206    0.0490      4.21 2.55e- 5
+ 6 read          0.182    0.0403      4.51 6.62e- 6
+ 7 arguments     0.180    0.0556      3.24 1.21e- 3
+ 8 literally     0.178    0.0363      4.89 1.03e- 6
+ 9 yeah          0.159    0.0531      2.99 2.78e- 3
+10 shit          0.157    0.0455      3.46 5.40e- 4
+# ℹ 23 more rows
+# ℹ Use `print(n = ...)` to see more rows

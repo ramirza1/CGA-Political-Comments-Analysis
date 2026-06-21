@@ -1,0 +1,509 @@
+RQ1a — removed comment language
+Family: binomial | seed: 5710
+Minority-conditional floor: >= 98 of 9789 removed comments
+Whole-corpus floor (sensitivity): >= 1168 of 116793 comments
+
+=== PRIMARY: minority-conditional floor ===
+skip-gram lambda.1se: 0.002780705 | text terms selected: 62 
+
+         term         coef is_year
+          lol  0.316346803   FALSE
+         dude  0.213747698   FALSE
+        sorry  0.213135700   FALSE
+       please  0.185289927   FALSE
+         read  0.165434033   FALSE
+    literally  0.156041046   FALSE
+   irrelevant  0.146480582   FALSE
+      comment  0.143880259   FALSE
+    arguments  0.130476943   FALSE
+     bullshit  0.129689005   FALSE
+       thread  0.129416509   FALSE
+    years.ago  0.127935979    TRUE
+         shit  0.101628580   FALSE
+   discussion  0.100309891   FALSE
+         said  0.093789606   FALSE
+       stated  0.085485224   FALSE
+     year2020  0.080207697    TRUE
+ conversation  0.071854105   FALSE
+      talking  0.069166655   FALSE
+        admit  0.066196557   FALSE
+         yeah  0.065869262   FALSE
+      provide  0.065384025   FALSE
+       answer  0.058326053   FALSE
+        claim  0.053350627   FALSE
+        words  0.051143745   FALSE
+     year2021  0.050815189    TRUE
+     evidence  0.043475784   FALSE
+     year2022  0.042751489    TRUE
+      respond  0.042221965   FALSE
+          yes  0.041375997   FALSE
+     year2019  0.040150908    TRUE
+      fucking  0.039696111   FALSE
+     argument  0.037816591   FALSE
+         fact  0.031938153   FALSE
+         know  0.027305668   FALSE
+          cmv  0.026340140   FALSE
+     comments  0.019267558   FALSE
+      clearly  0.017323231   FALSE
+       source  0.015649451   FALSE
+        asked  0.015135226   FALSE
+      science  0.014993557   FALSE
+        logic  0.013482856   FALSE
+     research  0.012816549   FALSE
+       trying  0.007927264   FALSE
+     year2018  0.006609847    TRUE
+         post  0.003861787   FALSE
+   ridiculous  0.002896256   FALSE
+         feel -0.002848463   FALSE
+          way -0.004908932   FALSE
+        comes -0.005369473   FALSE
+       people -0.006463947   FALSE
+   reasonable -0.008866727   FALSE
+        often -0.015882457   FALSE
+        think -0.016169504   FALSE
+     year2017 -0.020303638    TRUE
+     probably -0.021298325   FALSE
+        issue -0.024080822   FALSE
+         edit -0.030114404   FALSE
+      general -0.030762491   FALSE
+      similar -0.034041879   FALSE
+     year2016 -0.034170747    TRUE
+         many -0.035051015   FALSE
+          may -0.049872514   FALSE
+       though -0.053548373   FALSE
+          lot -0.067732116   FALSE
+          etc -0.068641234   FALSE
+         fair -0.072767623   FALSE
+        agree -0.090480722   FALSE
+      example -0.093570924   FALSE
+      however -0.099430184   FALSE
+
+--- relaxed LASSO ---
+         term    estimate  std.error statistic      p.value
+          lol 0.432163211 0.06467350 6.6822300 2.353332e-11
+         dude 0.361991701 0.07494239 4.8302662 1.363506e-06
+        sorry 0.303652566 0.06357113 4.7765794 1.783022e-06
+       thread 0.253807915 0.08173170 3.1053791 1.900353e-03
+     bullshit 0.251314063 0.07534244 3.3356242 8.510813e-04
+   irrelevant 0.248326861 0.07356615 3.3755589 7.366591e-04
+        admit 0.226330566 0.09015336 2.5105063 1.205582e-02
+       stated 0.217736446 0.07647112 2.8473030 4.409137e-03
+       please 0.215783501 0.05515416 3.9123700 9.139473e-05
+      comment 0.179742138 0.04939861 3.6386075 2.741162e-04
+         read 0.174449329 0.04049023 4.3084304 1.644172e-05
+      respond 0.171965585 0.08521889 2.0179280 4.359876e-02
+    literally 0.166230809 0.03653076 4.5504342 5.353533e-06
+    arguments 0.159423574 0.05585764 2.8541050 4.315827e-03
+          cmv 0.147674474 0.07390026 1.9982944 4.568475e-02
+   ridiculous 0.144541871 0.07904555 1.8285896 6.746111e-02
+ conversation 0.144204255 0.06271273 2.2994415 2.147988e-02
+         yeah 0.143309363 0.05305319 2.7012391 6.908165e-03
+         shit 0.140135237 0.04574926 3.0631147 2.190461e-03
+   discussion 0.135060598 0.05174260 2.6102399 9.047874e-03
+       answer 0.126994152 0.05010585 2.5345176 1.126023e-02
+        asked 0.121711421 0.07039807 1.7289029 8.382648e-02
+     comments 0.118955500 0.07350210 1.6183959 1.055773e-01
+      provide 0.116301197 0.05634604 2.0640526 3.901273e-02
+        words 0.106240401 0.04505584 2.3579716 1.837510e-02
+        logic 0.102470556 0.05568183 1.8402872 6.572608e-02
+      science 0.090040720 0.04106478 2.1926508 2.833255e-02
+       source 0.084331703 0.04511246 1.8693659 6.157192e-02
+      clearly 0.080777503 0.05367929 1.5048170 1.323711e-01
+      talking 0.080586525 0.03356763 2.4007214 1.636279e-02
+      fucking 0.078447784 0.04294540 1.8266867 6.774688e-02
+     research 0.077083301 0.05253647 1.4672342 1.423124e-01
+        claim 0.067626539 0.03872214 1.7464565 8.073167e-02
+         said 0.058268011 0.02394333 2.4335799 1.495033e-02
+          yes 0.058000049 0.03418535 1.6966349 8.976572e-02
+     evidence 0.053332880 0.02924619 1.8235840 6.821498e-02
+         post 0.032784666 0.03830120 0.8559697 3.920145e-01
+     argument 0.027671970 0.02459920 1.1249134 2.606257e-01
+         fact 0.015427729 0.03066096 0.5031717 6.148436e-01
+       trying 0.011919763 0.03690855 0.3229540 7.467301e-01
+         know 0.002446793 0.02113902 0.1157477 9.078525e-01
+
+
+=== SENSITIVITY CHECK: whole-corpus 1% floor ===
+skip-gram lambda.1se: 0.002800445 | text terms selected: 56 
+
+         term         coef is_year
+          lol  0.319151356   FALSE
+        sorry  0.216891550   FALSE
+       please  0.190599958   FALSE
+         read  0.168073043   FALSE
+    literally  0.160275127   FALSE
+      comment  0.151110398   FALSE
+   irrelevant  0.146733041   FALSE
+    arguments  0.137904964   FALSE
+         shit  0.109124988   FALSE
+   discussion  0.105358007   FALSE
+         said  0.098498566   FALSE
+     year2020  0.080283284    TRUE
+ conversation  0.073432985   FALSE
+      talking  0.072529523   FALSE
+         yeah  0.072309383   FALSE
+      provide  0.067850923   FALSE
+       answer  0.060215984   FALSE
+        claim  0.055443655   FALSE
+        words  0.052932886   FALSE
+     year2021  0.051000839    TRUE
+      fucking  0.047597553   FALSE
+     evidence  0.045951134   FALSE
+     year2022  0.041984364    TRUE
+          yes  0.041564996   FALSE
+     year2019  0.041058261    TRUE
+     argument  0.039397593   FALSE
+         fact  0.034776506   FALSE
+         know  0.029522351   FALSE
+        asked  0.020481578   FALSE
+      clearly  0.019619721   FALSE
+       source  0.015750059   FALSE
+      science  0.015538075   FALSE
+        logic  0.014750232   FALSE
+     research  0.014602177   FALSE
+       trying  0.009721342   FALSE
+         post  0.007639413   FALSE
+     year2018  0.007122257    TRUE
+      calling  0.003951185   FALSE
+        comes -0.001059316   FALSE
+         feel -0.001296895   FALSE
+          way -0.002230679   FALSE
+       people -0.005386025   FALSE
+   reasonable -0.006928659   FALSE
+       coming -0.011295686   FALSE
+        often -0.011904956   FALSE
+        think -0.014279406   FALSE
+     probably -0.015741893   FALSE
+     year2017 -0.018738142    TRUE
+        issue -0.021408488   FALSE
+         edit -0.026621094   FALSE
+      similar -0.026913673   FALSE
+      general -0.026929183   FALSE
+         many -0.032203020   FALSE
+     year2016 -0.032665434    TRUE
+          may -0.049038910   FALSE
+       though -0.052110365   FALSE
+          lot -0.063266339   FALSE
+          etc -0.066868959   FALSE
+         fair -0.071957221   FALSE
+        agree -0.087801781   FALSE
+      example -0.090556235   FALSE
+      however -0.096813377   FALSE
+  necessarily -0.143839296   FALSE
+
+--- relaxed LASSO ---
+         term    estimate  std.error statistic      p.value
+          lol 0.439387934 0.06461479 6.8001141 1.045363e-11
+        sorry 0.316094949 0.06343301 4.9831302 6.256383e-07
+   irrelevant 0.256714739 0.07326413 3.5039624 4.583901e-04
+       please 0.234543971 0.05485650 4.2755913 1.906307e-05
+      comment 0.206162379 0.04896939 4.2100257 2.553417e-05
+         read 0.181607700 0.04030635 4.5056847 6.615926e-06
+    arguments 0.179816731 0.05555207 3.2369045 1.208338e-03
+    literally 0.177576144 0.03634132 4.8863423 1.027265e-06
+         yeah 0.158714459 0.05306660 2.9908541 2.781984e-03
+         shit 0.157262092 0.04545289 3.4598918 5.403924e-04
+ conversation 0.155432350 0.06243925 2.4893374 1.279814e-02
+   discussion 0.151686268 0.05141132 2.9504448 3.173168e-03
+       answer 0.133273404 0.04995276 2.6679886 7.630685e-03
+        asked 0.131208397 0.07005219 1.8730092 6.106711e-02
+      provide 0.124668087 0.05601539 2.2256041 2.604071e-02
+        words 0.107958331 0.04496989 2.4006802 1.636463e-02
+        logic 0.107725616 0.05574776 1.9323757 5.331315e-02
+      fucking 0.100632735 0.04412096 2.2808374 2.255807e-02
+      calling 0.098072932 0.05996411 1.6355271 1.019386e-01
+      science 0.090577851 0.04092148 2.2134549 2.686630e-02
+      clearly 0.090537400 0.05350722 1.6920596 9.063460e-02
+       source 0.089448580 0.04484867 1.9944531 4.610256e-02
+      talking 0.088310349 0.03344377 2.6405623 8.276857e-03
+     research 0.084624803 0.05258522 1.6092886 1.075532e-01
+        claim 0.073496580 0.03846746 1.9106167 5.605386e-02
+         said 0.068233559 0.02383260 2.8630341 4.196054e-03
+     evidence 0.059406234 0.02906904 2.0436255 4.099055e-02
+          yes 0.058177534 0.03409583 1.7062947 8.795322e-02
+         post 0.050430426 0.03793287 1.3294650 1.836946e-01
+     argument 0.036009854 0.02442724 1.4741679 1.404364e-01
+         fact 0.023021162 0.03056170 0.7532683 4.512887e-01
+       trying 0.018605278 0.03679616 0.5056310 6.131157e-01
+         know 0.009689638 0.02108027 0.4596543 6.457644e-01
+
+
+=== ROBUSTNESS: n-gram and stem (both schemes) ===
+
+-- n-gram [minority] --
+       term          coef is_year
+        lol  0.3563224231   FALSE
+ irrelevant  0.2343667492   FALSE
+      sorry  0.2230274014   FALSE
+       read  0.2229260935   FALSE
+  literally  0.1765760458   FALSE
+    comment  0.1441711656   FALSE
+       shit  0.1276157306   FALSE
+       said  0.1265986291   FALSE
+      said.  0.1226476156   FALSE
+     answer  0.1144106248   FALSE
+     please  0.0965633052   FALSE
+      admit  0.0955049309   FALSE
+    talking  0.0804155684   FALSE
+    provide  0.0786090771   FALSE
+   year2020  0.0785003267    TRUE
+  arguments  0.0779938956   FALSE
+      words  0.0742767188   FALSE
+   right..2  0.0721525504   FALSE
+     wrong.  0.0559810042   FALSE
+ discussion  0.0526657734   FALSE
+   year2021  0.0513713674    TRUE
+      logic  0.0466146647   FALSE
+       post  0.0450636730   FALSE
+    fucking  0.0446269758   FALSE
+   year2022  0.0420440273    TRUE
+   year2019  0.0409149191    TRUE
+  argument.  0.0373482699   FALSE
+       X.re  0.0352595134   FALSE
+       know  0.0350750216   FALSE
+   evidence  0.0313595171   FALSE
+      claim  0.0294395675   FALSE
+     trying  0.0231598595   FALSE
+      yeah.  0.0189521525   FALSE
+      prove  0.0153251905   FALSE
+    article  0.0138554185   FALSE
+   year2018  0.0110691889    TRUE
+       fuck  0.0065583387   FALSE
+    clearly  0.0062498244   FALSE
+       fact  0.0055956539   FALSE
+   research  0.0015210800   FALSE
+   argument  0.0012104041   FALSE
+    calling  0.0009905724   FALSE
+       zero  0.0009178998   FALSE
+     entire  0.0007138295   FALSE
+      often -0.0006840525   FALSE
+      comes -0.0011273393   FALSE
+     become -0.0015108336   FALSE
+       etc. -0.0047884836   FALSE
+     social -0.0074218495   FALSE
+        way -0.0074309646   FALSE
+     people -0.0080219614   FALSE
+    similar -0.0093377599   FALSE
+       feel -0.0103572473   FALSE
+   probably -0.0127909994   FALSE
+      might -0.0145571004   FALSE
+   year2017 -0.0164115515    TRUE
+      think -0.0179666416   FALSE
+       many -0.0274765410   FALSE
+      issue -0.0300337550   FALSE
+   year2016 -0.0308212566    TRUE
+        may -0.0525324910   FALSE
+   however. -0.0673358053   FALSE
+        lot -0.0691548155   FALSE
+   example. -0.0887129393   FALSE
+      agree -0.0925463225   FALSE
+
+-- n-gram [whole-corpus] --
+        term          coef is_year
+        read  0.2271578407   FALSE
+   literally  0.1847919817   FALSE
+     comment  0.1521288153   FALSE
+        said  0.1329096221   FALSE
+        shit  0.1325781479   FALSE
+      answer  0.1164574102   FALSE
+      please  0.1005118351   FALSE
+     talking  0.0851163088   FALSE
+   arguments  0.0833873780   FALSE
+    right..1  0.0810042591   FALSE
+    year2020  0.0796665042    TRUE
+     provide  0.0782097574   FALSE
+       words  0.0764785873   FALSE
+      wrong.  0.0588770122   FALSE
+  discussion  0.0564202943   FALSE
+       logic  0.0526870168   FALSE
+    year2021  0.0523761295    TRUE
+   argument.  0.0492856887   FALSE
+        post  0.0475284927   FALSE
+     fucking  0.0457419233   FALSE
+    year2022  0.0428949197    TRUE
+    year2019  0.0424036120    TRUE
+        X.re  0.0387190604   FALSE
+        know  0.0384233405   FALSE
+       claim  0.0355926945   FALSE
+    evidence  0.0331166384   FALSE
+       yeah.  0.0263690137   FALSE
+      trying  0.0262783108   FALSE
+       prove  0.0153993070   FALSE
+        fact  0.0116604704   FALSE
+        fuck  0.0107764719   FALSE
+    year2018  0.0105547786    TRUE
+     clearly  0.0058191613   FALSE
+      entire  0.0052323504   FALSE
+    argument  0.0033788481   FALSE
+    research  0.0027433380   FALSE
+       asked  0.0023542524   FALSE
+     calling  0.0017115340   FALSE
+         try  0.0008451201   FALSE
+       comes -0.0002199738   FALSE
+      become -0.0018100817   FALSE
+        etc. -0.0025755566   FALSE
+        feel -0.0033224038   FALSE
+      social -0.0058168290   FALSE
+         way -0.0059161498   FALSE
+    probably -0.0070513106   FALSE
+      people -0.0075539117   FALSE
+     similar -0.0076288536   FALSE
+      coming -0.0084860226   FALSE
+       might -0.0133426726   FALSE
+       think -0.0147273580   FALSE
+    year2017 -0.0153471378    TRUE
+        many -0.0256134458   FALSE
+       issue -0.0303275428   FALSE
+        fair -0.0305951461   FALSE
+    year2016 -0.0309753145    TRUE
+         may -0.0513314206   FALSE
+    however. -0.0652802422   FALSE
+         lot -0.0687857311   FALSE
+       agree -0.0894456483   FALSE
+    example. -0.0903576413   FALSE
+ necessarily -0.1219621914   FALSE
+
+-- stem [minority] --
+     term         coef is_year
+      lol  0.304903705   FALSE
+  nonsens  0.265054963   FALSE
+  repeat.  0.218404665   FALSE
+    sorri  0.197447371   FALSE
+     dude  0.173478785   FALSE
+  irrelev  0.151779156   FALSE
+    pleas  0.148527369   FALSE
+     read  0.145378975   FALSE
+    liter  0.123147088   FALSE
+  respond  0.119719148   FALSE
+     shit  0.110328322   FALSE
+  comment  0.108491000   FALSE
+    repli  0.108170951   FALSE
+ bullshit  0.089395186   FALSE
+     said  0.086183915   FALSE
+    admit  0.084717500   FALSE
+   thread  0.079724769   FALSE
+ year2020  0.078753178    TRUE
+ argument  0.071151676   FALSE
+   answer  0.059928258   FALSE
+     cite  0.059487894   FALSE
+     fuck  0.052722493   FALSE
+     yeah  0.052273837   FALSE
+    prove  0.049782498   FALSE
+ year2021  0.049547686    TRUE
+ year2022  0.041913765    TRUE
+      yes  0.040437725   FALSE
+ year2019  0.040213234    TRUE
+    sourc  0.037948517   FALSE
+     evid  0.036491511   FALSE
+  discuss  0.035809914   FALSE
+    claim  0.034812516   FALSE
+      tri  0.030453626   FALSE
+     post  0.028664998   FALSE
+     X.re  0.021658737   FALSE
+     talk  0.019649847   FALSE
+     word  0.016789759   FALSE
+   provid  0.015902997   FALSE
+   insult  0.011723539   FALSE
+    logic  0.009665980   FALSE
+ year2018  0.008565716    TRUE
+     fact  0.008121351   FALSE
+   random  0.007059467   FALSE
+   scienc  0.004923789   FALSE
+     know  0.003649730   FALSE
+      cmv  0.003281985   FALSE
+ research  0.002832775   FALSE
+    peopl -0.001898406   FALSE
+    femal -0.002240861   FALSE
+    focus -0.007988257   FALSE
+   reason -0.009574375   FALSE
+  probabl -0.010812147   FALSE
+     edit -0.011242516   FALSE
+    think -0.011501928   FALSE
+      way -0.012980160   FALSE
+    often -0.013122869   FALSE
+     case -0.016476887   FALSE
+     come -0.017797770   FALSE
+     fair -0.017839130   FALSE
+ year2017 -0.019586414    TRUE
+     issu -0.021463334   FALSE
+  general -0.023033575   FALSE
+    allow -0.030282111   FALSE
+     mani -0.030498099   FALSE
+ year2016 -0.034491750    TRUE
+   strong -0.038406576   FALSE
+      may -0.045943371   FALSE
+   though -0.046880653   FALSE
+    becom -0.056217152   FALSE
+     agre -0.061942118   FALSE
+      etc -0.062352940   FALSE
+   exampl -0.073664562   FALSE
+      lot -0.073786414   FALSE
+    howev -0.107019677   FALSE
+
+-- stem [whole-corpus] --
+        term         coef is_year
+         lol  0.310557150   FALSE
+       sorri  0.209897731   FALSE
+       pleas  0.159898764   FALSE
+        read  0.150918198   FALSE
+     irrelev  0.150337923   FALSE
+     respond  0.131030016   FALSE
+       liter  0.128135824   FALSE
+     comment  0.118375693   FALSE
+        shit  0.118031469   FALSE
+        said  0.090882301   FALSE
+       admit  0.089005805   FALSE
+    year2020  0.078185474    TRUE
+    argument  0.075725612   FALSE
+      answer  0.066107278   FALSE
+        fuck  0.060923497   FALSE
+        yeah  0.057240703   FALSE
+       prove  0.053253240   FALSE
+    year2021  0.050113377    TRUE
+         yes  0.042132763   FALSE
+       sourc  0.041895647   FALSE
+    year2022  0.041815491    TRUE
+    year2019  0.041164885    TRUE
+        evid  0.040509445   FALSE
+       claim  0.040415431   FALSE
+     discuss  0.040234132   FALSE
+         tri  0.033171997   FALSE
+        post  0.032726178   FALSE
+        word  0.024165444   FALSE
+        talk  0.023929085   FALSE
+        X.re  0.022439113   FALSE
+      provid  0.021670844   FALSE
+       logic  0.014480582   FALSE
+        fact  0.014213101   FALSE
+      scienc  0.009184931   FALSE
+    year2018  0.007890323    TRUE
+        know  0.004724331   FALSE
+    research  0.004272820   FALSE
+       peopl -0.001565924   FALSE
+       focus -0.005774558   FALSE
+        edit -0.005801466   FALSE
+      reason -0.006809229   FALSE
+     probabl -0.008955843   FALSE
+       often -0.010051576   FALSE
+       think -0.010727491   FALSE
+         way -0.010807003   FALSE
+        come -0.013030226   FALSE
+        case -0.016117964   FALSE
+    year2017 -0.018281932    TRUE
+        fair -0.018857048   FALSE
+     general -0.019260898   FALSE
+        safe -0.019954489   FALSE
+        issu -0.021355458   FALSE
+        mani -0.028471065   FALSE
+       allow -0.028817882   FALSE
+    year2016 -0.033185537    TRUE
+      strong -0.041381911   FALSE
+         may -0.044492662   FALSE
+      though -0.047585930   FALSE
+       becom -0.057807130   FALSE
+        agre -0.060677801   FALSE
+         etc -0.060713494   FALSE
+         lot -0.070915122   FALSE
+      exampl -0.071018043   FALSE
+       howev -0.107107491   FALSE
+ necessarili -0.132152166   FALSE

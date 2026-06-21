@@ -1,0 +1,7 @@
+"representation","scheme","n_terms"
+"skip-gram","minority",712
+"ngram","minority",617
+"stem","minority",760
+"skip-gram","whole-corpus",690
+"ngram","whole-corpus",568
+"stem","whole-corpus",739
