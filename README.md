@@ -66,6 +66,8 @@ Run the scripts from the project folder (where `CGA_CMV_Pol_Comments.Rproj` is),
 | `5_topics.py` | Inductive thread topics: post-title slugs embedded (all-mpnet-base-v2), reduced with UMAP and clustered with k-means. Uses k = 15, chosen from a k = 5–30 sweep by silhouette and stability across seeds. Writes a blank coding sheet. | `input_data_anonymized/` | `prepped_data_anonymized/thread_topics.csv`, `*/topics/` |
 | `5b_descriptives_topics.R` | Topic sizes, topics over time, within-pair differences by topic and political coding, and where high-removal users post. | thread topics, filled coding sheet, user table | `*/topics/` |
 | `6_descriptives_networks.R` | Reply network (repeat encounters within and across threads), user × topic specialisation, and topic × topic links, each against a shuffled baseline. | `prepped_data_anonymized/`, thread topics | `*/networks/` |
+| `7_export_tex.R` | Turns the results above into LaTeX inputs: `\newcommand` macros for every number cited in write-ups, and booktabs tables. Computes nothing new (except post-ID coverage by year). | `descriptive_results/`, `prepped_data_anonymized/conversations.rds` | `tex_outputs/` |
+| `sync_overleaf.R` | Mirrors `tex_outputs/`, `graphical_output/` and `study_exhibits/` into local clones of Overleaf projects, then commits and pushes. | `tex_outputs/`, figures | Overleaf project(s) |
 
 `*/` stands for both `descriptive_results/` (CSV tables) and `graphical_output/` (PNG figures).
 
@@ -74,6 +76,7 @@ Run the scripts from the project folder (where `CGA_CMV_Pol_Comments.Rproj` is),
 - `3b` does not depend on `3`.
 - `5b` needs `3` (for the user table), `4` and `5`.
 - `6` needs `5` for sections 2–3.
+- `7` needs `1`–`6` (and the filled topic coding sheet); `sync_overleaf.R` needs `7`.
 
 **Topic coding (manual step between `5_topics.py` and `5b`)**
 
@@ -104,9 +107,26 @@ Run the scripts from the project folder (where `CGA_CMV_Pol_Comments.Rproj` is),
 │   ├── conversations/  users/  removal_authors/  content/  topics/  networks/
 ├── graphical_output/           # PNG figures, same subfolders
 │
+├── tex_outputs/                # LaTeX macros and tables for Overleaf (7_export_tex.R)
 ├── study_exhibits/             # schematics and tables not produced by the scripts
 └── deprecated_scripts/         # retired code kept for reference
 ```
+
+---
+
+## Write-ups (Overleaf)
+
+Numbers, tables and figures in LaTeX write-ups come straight from the pipeline, so a re-run updates the document.
+
+1. Run `7_export_tex.R`. It writes `tex_outputs/numbers_descriptives.tex` (macros such as `\nPairs`, `\pctSameLength`) and `tex_outputs/tables/*.tex`. Each macro is commented with its source CSV.
+2. Run `sync_overleaf.R`. It mirrors `tex_outputs/` and the figures into each Overleaf project listed at the top of the script and pushes (Overleaf Git integration or GitHub sync). With `PUSH <- FALSE` it only copies, for a manual upload.
+3. In the Overleaf document:
+   - preamble: `\input{tex_outputs/numbers_descriptives}` and `\graphicspath{{figures/}}`
+   - text: `\nPairs{} pairs`, `\pctSameLength\%`
+   - tables: `\input{tex_outputs/tables/tab_sample_comparison}` inside a `table` float
+   - figures: `\includegraphics{conversations/4c_pair_length_within_k_postid}`
+
+Never edit `tex_outputs/` or `figures/` on Overleaf: the next sync overwrites them. New scripts (measurement, models) can `source("tex_helpers.R")` and write their own `numbers_<name>.tex` and tables the same way.
 
 ---
 
