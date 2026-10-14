@@ -1,0 +1,8 @@
+Metric,Value
+Threads,"6,440"
+Pairs,"8,150"
+Mean pairs per thread,1.27
+Median pairs per thread,1
+Max pairs in one thread,8
+% of threads with >1 pair,18.6%
+% of pairs in threads with >1 pair,35.7%

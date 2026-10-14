@@ -1,0 +1,7 @@
+Check,Result
+Every pair has exactly 2 paths,"8,150 of 8,150 pairs"
+Every pair has exactly 1 awry path,"8,150 of 8,150 pairs"
+Every path has exactly 1 first reply (depth 0),"16,300 of 16,300 paths"
+Every path is linear (length = max depth + 1),"16,300 of 16,300 paths"
+No pair spans more than one thread (pairs with post ID),0 pairs span >1 thread
+Awry share of paths,50.0%

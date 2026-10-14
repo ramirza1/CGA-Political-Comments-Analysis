@@ -1,0 +1,5 @@
+removal_count_band,n_users,total_removed,median_comments,median_endings,median_removed_share,pct_of_removals
+0,15199,0,2,0,0,0
+1,4247,4247,3,1,100,54.6
+2-4,835,2032,15,3,66.7,26.1
+5+,181,1506,54,10,70,19.3

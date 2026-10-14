@@ -1,0 +1,6 @@
+Group,N_users,Pct_of_users,N_comments,Pct_of_comments,Median_comments
+All identifiable users,20462,100,93291,100,2
+One comment,6932,33.9,6932,7.4,1
+Top 10%,2230,10.9,45892,49.2,14
+Top 5%,1126,5.5,34210,36.7,21
+Top 1%,211,1,15217,16.3,56

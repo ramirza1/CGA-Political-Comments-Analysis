@@ -1,0 +1,7 @@
+outcome,position,n,n_yes,pct,ci_lower,ci_upper
+Awry,First reply,8150,0,0,0,0.047
+Awry,Middle,33966,85,0.25,0.202,0.309
+Awry,Final comment,8150,0,0,0,0.047
+On-track,First reply,8150,0,0,0,0.047
+On-track,Middle,29637,79,0.267,0.214,0.332
+On-track,Final comment,8150,22,0.27,0.178,0.408

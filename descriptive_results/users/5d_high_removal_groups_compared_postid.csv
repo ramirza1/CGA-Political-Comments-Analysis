@@ -1,0 +1,8 @@
+group,n_users,pct_of_users,median_comments,mean_comments,median_endings,avg_removal_rate_pct,removed_share_endings_pct,pct_of_removed_comments,pct_also_repeat_author,pct_also_top_rate,pct_also_above_chance
+All identifiable users,20462,100,2,4.6,0,8.3,49.8,100,2.3,0.2,0.2
+Users with 25+ comments,439,2.1,37,50.3,6,9.1,57,25.9,64.2,10,6.2
+None removed,15199,74.3,2,2.9,0,0,0,0,0,0,0
+1-2 removed,4802,23.5,4,6.2,1,17.9,72.2,68.8,0,0,0
+3+ removed (repeat removal authors),461,2.3,30,42.5,6,12.4,65.7,31.2,100,9.5,7.2
+Top 10% by removal rate (25+ comments),44,0.2,37,45.6,9,19.2,79.3,4.9,100,100,40.9
+"Removed above chance (share of endings, z >= 2, 5+ endings)",33,0.2,54,78.5,11,16.3,82.6,5.4,100,54.5,100

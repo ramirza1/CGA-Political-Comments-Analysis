@@ -1,0 +1,9 @@
+activity_group,removal_status,n_users,pct_with_flair,median_flair_if_any
+One comment,Wrote >=1 removed comment,749,13.2,1
+One comment,No removed comments,6183,18.1,1
+"Other (2+ comments, bottom 95%)",Wrote >=1 removed comment,3596,34.6,3
+"Other (2+ comments, bottom 95%)",No removed comments,8808,27.1,2
+Top 5% (excl. top 1%),Wrote >=1 removed comment,713,84,10
+Top 5% (excl. top 1%),No removed comments,202,55,7
+Top 1%,Wrote >=1 removed comment,205,98.5,54.5
+Top 1%,No removed comments,6,66.7,151.5

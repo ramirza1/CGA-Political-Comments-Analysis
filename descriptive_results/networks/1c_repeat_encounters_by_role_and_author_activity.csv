@@ -1,0 +1,13 @@
+activity_group,role,n_replies,n_met_before,mean_prior_threads,n_exchanged_earlier_path,mean_prior_in_path,pct_met_before,pct_met_before_lower,pct_met_before_upper,pct_exchanged_earlier,pct_exchanged_lower,pct_exchanged_upper
+One comment,Removed comment,748,0,0,0,0,0,0,0.51,0,0,0.51
+One comment,On-track final comment,797,0,0,0,0,0,0,0.48,0,0,0.48
+One comment,Other replies,3229,0,0,0,0,0,0,0.12,0,0,0.12
+"Other (2+ comments, bottom 95%)",Removed comment,4010,3,0,3168,2.49,0.07,0.03,0.22,79,77.71,80.24
+"Other (2+ comments, bottom 95%)",On-track final comment,4480,1,0,3367,2.31,0.02,0,0.13,75.16,73.87,76.4
+"Other (2+ comments, bottom 95%)",Other replies,35768,36,0,20865,1.57,0.1,0.07,0.14,58.33,57.82,58.84
+Top 5% (excl. top 1%),Removed comment,1599,3,0,1312,3.18,0.19,0.06,0.55,82.05,80.09,83.85
+Top 5% (excl. top 1%),On-track final comment,1276,3,0,1039,2.87,0.24,0.08,0.69,81.43,79.2,83.46
+Top 5% (excl. top 1%),Other replies,12497,42,0,8422,2.05,0.34,0.25,0.45,67.39,66.57,68.21
+Top 1%,Removed comment,1418,9,0.01,1199,3.34,0.63,0.33,1.2,84.56,82.58,86.34
+Top 1%,On-track final comment,1035,9,0.01,832,2.82,0.87,0.46,1.64,80.39,77.86,82.69
+Top 1%,Other replies,8372,71,0.01,6157,2.16,0.85,0.67,1.07,73.54,72.59,74.48

@@ -1,0 +1,7 @@
+outcome,award_position,n,n_yes,pct,ci_lower,ci_upper
+Awry,First reply,8150,74,0.908,0.724,1.138
+Awry,Second reply,7315,0,0,0,0.052
+Awry,Third reply or later,26651,11,0.041,0.023,0.074
+On-track,First reply,8150,70,0.859,0.68,1.084
+On-track,Second reply,7021,1,0.014,0.003,0.081
+On-track,Third reply or later,22616,30,0.133,0.093,0.189

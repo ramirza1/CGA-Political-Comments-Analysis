@@ -1,0 +1,5 @@
+political_category,n_topics,n_threads,n_pairs,n_paths,n_comments,pct_threads,pct_pairs
+Implicitly political: Identity-based,4,1949,2529,5058,30364,30.64,31.41
+Implicitly political: Policy issues,5,1651,2086,4172,24802,25.96,25.91
+Explicitly political: Actors and institutions,2,1381,1774,3548,20793,21.71,22.03
+Implicitly political: Moral and lifestyle,4,1379,1662,3324,19135,21.68,20.64

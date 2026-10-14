@@ -1,0 +1,25 @@
+outcome,position,quote_source,n,pct
+Awry,First reply,Quotes the comment replied to,0,0
+Awry,First reply,Quotes an earlier comment only,0,0
+Awry,First reply,Quoted text not in path (post or outside source),1589,99.62
+Awry,First reply,Quotes too short to match,6,0.38
+Awry,Middle,Quotes the comment replied to,6232,90.66
+Awry,Middle,Quotes an earlier comment only,150,2.18
+Awry,Middle,Quoted text not in path (post or outside source),424,6.17
+Awry,Middle,Quotes too short to match,68,0.99
+Awry,Final comment,Quotes the comment replied to,1769,90.81
+Awry,Final comment,Quotes an earlier comment only,59,3.03
+Awry,Final comment,Quoted text not in path (post or outside source),98,5.03
+Awry,Final comment,Quotes too short to match,22,1.13
+On-track,First reply,Quotes the comment replied to,0,0
+On-track,First reply,Quotes an earlier comment only,0,0
+On-track,First reply,Quoted text not in path (post or outside source),1511,99.47
+On-track,First reply,Quotes too short to match,8,0.53
+On-track,Middle,Quotes the comment replied to,4833,90.71
+On-track,Middle,Quotes an earlier comment only,106,1.99
+On-track,Middle,Quoted text not in path (post or outside source),345,6.48
+On-track,Middle,Quotes too short to match,44,0.83
+On-track,Final comment,Quotes the comment replied to,1100,87.72
+On-track,Final comment,Quotes an earlier comment only,39,3.11
+On-track,Final comment,Quoted text not in path (post or outside source),100,7.97
+On-track,Final comment,Quotes too short to match,15,1.2

@@ -1,0 +1,19 @@
+removal_status,flair_bin,n_users,pct
+Wrote >=1 removed comment,None,3120,59.3
+Wrote >=1 removed comment,1,511,9.7
+Wrote >=1 removed comment,2,284,5.4
+Wrote >=1 removed comment,3-5,408,7.8
+Wrote >=1 removed comment,6-10,297,5.6
+Wrote >=1 removed comment,11-25,314,6
+Wrote >=1 removed comment,26-50,150,2.9
+Wrote >=1 removed comment,51-100,95,1.8
+Wrote >=1 removed comment,100+,84,1.6
+No removed comments,None,11577,76.2
+No removed comments,1,1580,10.4
+No removed comments,2,640,4.2
+No removed comments,3-5,687,4.5
+No removed comments,6-10,367,2.4
+No removed comments,11-25,239,1.6
+No removed comments,26-50,66,0.4
+No removed comments,51-100,33,0.2
+No removed comments,100+,10,0.1

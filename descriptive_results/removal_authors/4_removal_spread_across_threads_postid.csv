@@ -1,0 +1,5 @@
+removal_label,n_users,median_removed,median_share_distinct_threads,pct_all_removals_same_thread
+Removed more often than chance,33,10,100,0
+Within chance,352,4,100,1.7
+Removed less often than chance,3,2,100,0
+Fewer than 5 path endings,628,2,100,8

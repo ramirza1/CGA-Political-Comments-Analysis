@@ -1,0 +1,15 @@
+outcome,position_bin,n_paths,pct
+Awry,Earliest sampled path,2961,36.3
+Awry,0-1 hr,3284,40.3
+Awry,1-3 hrs,924,11.3
+Awry,3-6 hrs,470,5.8
+Awry,6-12 hrs,298,3.7
+Awry,12-24 hrs,160,2
+Awry,>1 day,53,0.7
+On-track,Earliest sampled path,3485,42.8
+On-track,0-1 hr,3267,40.1
+On-track,1-3 hrs,839,10.3
+On-track,3-6 hrs,346,4.2
+On-track,6-12 hrs,132,1.6
+On-track,12-24 hrs,61,0.7
+On-track,>1 day,20,0.2

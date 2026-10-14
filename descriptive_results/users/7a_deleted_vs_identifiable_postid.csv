@@ -1,0 +1,3 @@
+account,n_comments,n_removed,n_first_replies,n_paths_present,removal_rate_pct,pct_comments_in_awry,median_word_count,median_age_at_retrieval,pct_of_all_comments,pct_of_all_removed,pct_of_all_first_replies
+Identifiable users,93291,7785,15852,16292,8.34,52.5,52,65.3,96.97,95.52,97.25
+[deleted],2912,365,448,1315,12.53,43.8,46,95.3,3.03,4.48,2.75

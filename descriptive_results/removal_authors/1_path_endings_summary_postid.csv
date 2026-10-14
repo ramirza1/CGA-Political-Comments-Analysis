@@ -1,0 +1,9 @@
+Metric,Value
+Identifiable users,"20,462"
+Users who end at least one path,"9,296"
+% of users who end at least one path,45.4%
+Path endings by identifiable users,"15,628"
+Of which removed (awry endings),"7,785"
+Overall removed share of endings (50% by design),49.8%
+Users with 5+ endings (eligible for a label),426
+% of endings written by users with 5+ endings,24.3%

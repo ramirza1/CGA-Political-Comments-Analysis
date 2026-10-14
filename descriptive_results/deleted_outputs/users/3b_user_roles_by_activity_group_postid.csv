@@ -1,0 +1,10 @@
+activity_group,role,n_users,pct
+One comment,Only writes first replies,2038,29.4
+One comment,Only writes deeper replies,4894,70.6
+"Other (2+ comments, bottom 95%)",Only writes first replies,137,1.1
+"Other (2+ comments, bottom 95%)",Writes first replies and deeper replies,4449,35.9
+"Other (2+ comments, bottom 95%)",Only writes deeper replies,7818,63
+Top 5% (excl. top 1%),Writes first replies and deeper replies,696,76.1
+Top 5% (excl. top 1%),Only writes deeper replies,219,23.9
+Top 1%,Writes first replies and deeper replies,205,97.2
+Top 1%,Only writes deeper replies,6,2.8

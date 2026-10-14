@@ -1,0 +1,13 @@
+measure,outcome,position,n,p10,p25,p50,p75,p90,p99,max,pct_zero_words
+All words,Awry,First reply,8150,22,43,88,173,303,815.5100000000002,1735,0
+All words,Awry,Middle,33966,12,24,48,96,180,524,1674,0
+All words,Awry,Final comment,8150,11,23,49,106,211.10000000000036,626,1614,0
+All words,On-track,First reply,8150,21,40,83,157,272,611.0200000000004,1497,0
+All words,On-track,Middle,29637,13,24,48,92,166,451.6399999999994,1640,0
+All words,On-track,Final comment,8150,11,21,43,84,151,438.02000000000044,1390,0
+Own words (quotes removed),Awry,First reply,8150,19,39,82,160,281.10000000000036,727,1600,0
+Own words (quotes removed),Awry,Middle,33966,11,22,44,87,157.5,429.6999999999971,1618,0.1
+Own words (quotes removed),Awry,Final comment,8150,10,21,44,94,175,502,1516,0.12
+Own words (quotes removed),On-track,First reply,8150,19,37,78,145,246,552.5300000000007,1330,0
+Own words (quotes removed),On-track,Middle,29637,12,22,44,84,147,384,1379,0.06
+Own words (quotes removed),On-track,Final comment,8150,10,20,40,78,138,373.0400000000009,1091,0.04

@@ -1,0 +1,5 @@
+activity_group,n_users,total_comments,total_removed,pooled_rate_pct,mean_user_rate_pct,pct_users_ever_removed
+One comment,6932,6932,749,10.8,10.8,10.8
+"Other (2+ comments, bottom 95%)",12404,52149,4017,7.7,8.33,29
+Top 5% (excl. top 1%),915,18993,1599,8.42,8.31,77.9
+Top 1%,211,15217,1420,9.33,9.19,97.2

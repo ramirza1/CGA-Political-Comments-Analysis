@@ -1,0 +1,5 @@
+outcome,returns,n_paths,pct
+Awry,Challenger returns,4312,54.1
+Awry,Challenger does not return,3654,45.9
+On-track,Challenger returns,4372,55.4
+On-track,Challenger does not return,3514,44.6

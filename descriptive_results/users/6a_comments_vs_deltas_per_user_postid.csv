@@ -1,0 +1,19 @@
+measure,bin,n_users,pct
+Career deltas (flair),None,14697,71.8
+Career deltas (flair),1,2091,10.2
+Career deltas (flair),2,924,4.5
+Career deltas (flair),3-5,1095,5.4
+Career deltas (flair),6-10,664,3.2
+Career deltas (flair),11-25,553,2.7
+Career deltas (flair),26-50,216,1.1
+Career deltas (flair),51-100,128,0.6
+Career deltas (flair),100+,94,0.5
+Comments written (this dataset),None,0,0
+Comments written (this dataset),1,6932,33.9
+Comments written (this dataset),2,4265,20.8
+Comments written (this dataset),3-5,5225,25.5
+Comments written (this dataset),6-10,2402,11.7
+Comments written (this dataset),11-25,1228,6
+Comments written (this dataset),26-50,279,1.4
+Comments written (this dataset),51-100,100,0.5
+Comments written (this dataset),100+,31,0.2

@@ -1,0 +1,19 @@
+group,measure,n_pairs,mean,sd,median,se,ci_lower,ci_upper,ref
+All pairs,Path length (comments),8051,0.54,1.77,0,0.02,0.5,0.57,0
+All pairs,Speakers per path,8051,0.16,1.23,0,0.01,0.14,0.19,0
+All pairs,Final comment: own words,8051,14.3,123.61,4,1.38,11.6,17,0
+All pairs,Final comment quotes (pct points),8051,8.5,54.03,0,0.6,7.32,9.68,0
+All pairs,Challenger returns (pct points),8051,-1.04,64.48,0,0.72,-2.45,0.37,0
+All pairs,Awry path started first (% of pairs),8051,45.76,49.82,0,0.56,44.67,46.85,50
+Explicitly political,Path length (comments),1774,0.51,1.6,0,0.04,0.43,0.58,0
+Explicitly political,Speakers per path,1774,0.21,1.27,0,0.03,0.15,0.27,0
+Explicitly political,Final comment: own words,1774,12.29,119.69,5,2.84,6.71,17.86,0
+Explicitly political,Final comment quotes (pct points),1774,8.4,54.91,0,1.3,5.84,10.96,0
+Explicitly political,Challenger returns (pct points),1774,-1.41,63.75,0,1.51,-4.38,1.56,0
+Explicitly political,Awry path started first (% of pairs),1774,45.32,49.79,0,1.18,43,47.64,50
+Implicitly political,Path length (comments),6277,0.54,1.82,0,0.02,0.5,0.59,0
+Implicitly political,Speakers per path,6277,0.15,1.22,0,0.02,0.12,0.18,0
+Implicitly political,Final comment: own words,6277,14.86,124.7,4,1.57,11.78,17.95,0
+Implicitly political,Final comment quotes (pct points),6277,8.52,53.78,0,0.68,7.19,9.85,0
+Implicitly political,Challenger returns (pct points),6277,-0.94,64.69,0,0.82,-2.54,0.66,0
+Implicitly political,Awry path started first (% of pairs),6277,45.88,49.83,0,0.63,44.65,47.11,50

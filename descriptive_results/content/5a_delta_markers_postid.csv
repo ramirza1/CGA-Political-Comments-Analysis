@@ -1,0 +1,7 @@
+Marker,N_comments,pct_of_comments
+Delta sign (Δ or ∆) anywhere in the text,188,0.195
+  - in the comment's own words,186,0.193
+  - only inside quoted text,2,0.002
+The word 'delta' / 'deltas',0,0
+The '!delta' command,0,0
+Comments whose author shows delta flair,46145,47.966

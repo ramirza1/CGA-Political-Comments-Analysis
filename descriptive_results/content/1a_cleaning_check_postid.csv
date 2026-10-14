@@ -1,0 +1,6 @@
+Check,N
+Comments,116793
+Comments with a stored symbol (&...;) before cleaning,25381
+Comments with a stored symbol after cleaning,3
+Comments starting a line with '&gt;' before cleaning,23722
+Comments with a quote paragraph after cleaning (see 1b),23628

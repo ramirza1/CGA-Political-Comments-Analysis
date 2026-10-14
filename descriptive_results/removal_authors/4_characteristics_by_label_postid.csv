@@ -1,0 +1,49 @@
+label,removal_label,n_users,median,p25,p75,mean
+Comments,Removed more often than chance,33,54,31,81,78.48
+Comments,Within chance,379,36,24,52,44.78
+Comments,Removed less often than chance,14,43,27.5,58.25,46.5
+Comments,Fewer than 5 path endings,20036,2,1,4,3.65
+Comments per active month,Removed more often than chance,33,2.79,1.51,4.91,3.63
+Comments per active month,Within chance,379,1.8,0.93,3.53,3.27
+Comments per active month,Removed less often than chance,14,1.66,1.09,2.29,3.21
+Comments per active month,Fewer than 5 path endings,20036,2,1,3,2.36
+Time on forum (days),Removed more often than chance,33,751.82,362.03,1388.39,895.79
+Time on forum (days),Within chance,379,683.64,348.18,1318.12,814.59
+Time on forum (days),Removed less often than chance,14,994.77,503.63,1441.82,945.91
+Time on forum (days),Fewer than 5 path endings,20036,0.03,0,1.53,78.44
+% of comments that are first replies,Removed more often than chance,33,21.33,7.41,23.26,17.23
+% of comments that are first replies,Within chance,379,18.52,8.22,30.12,20.38
+% of comments that are first replies,Removed less often than chance,14,27.92,23.75,35.23,26.45
+% of comments that are first replies,Fewer than 5 path endings,20036,0,0,28.57,19.21
+% of comments that end a path,Removed more often than chance,33,21.43,18.52,25,21.79
+% of comments that end a path,Within chance,379,19.51,15.61,26.04,21.99
+% of comments that end a path,Removed less often than chance,14,17.59,13.52,26.35,20.99
+% of comments that end a path,Fewer than 5 path endings,20036,0,0,33.33,19.45
+% of paths where they comment more than once,Removed more often than chance,33,62.96,56.31,75,65.2
+% of paths where they comment more than once,Within chance,379,60,50,71.43,60.56
+% of paths where they comment more than once,Removed less often than chance,14,51.19,43.09,63.89,55.22
+% of paths where they comment more than once,Fewer than 5 path endings,20036,50,0,100,48.89
+Median words per comment,Removed more often than chance,33,62,39,83,67.38
+Median words per comment,Within chance,379,53,37.5,76.75,62.33
+Median words per comment,Removed less often than chance,14,56,46.12,68.38,62.93
+Median words per comment,Fewer than 5 path endings,20036,53,29.38,97.5,80.79
+Median reply time (hours),Removed more often than chance,33,0.24,0.13,0.47,0.36
+Median reply time (hours),Within chance,379,0.2,0.12,0.35,0.38
+Median reply time (hours),Removed less often than chance,14,0.15,0.12,0.2,0.17
+Median reply time (hours),Fewer than 5 path endings,17861,0.36,0.14,1.2,5.31
+Mean depth (excluding their path endings),Removed more often than chance,33,3.21,2.59,4.36,3.47
+Mean depth (excluding their path endings),Within chance,379,2.85,2,3.55,2.85
+Mean depth (excluding their path endings),Removed less often than chance,14,2.11,1.79,3.33,2.37
+Mean depth (excluding their path endings),Fewer than 5 path endings,18293,2,1,3.57,2.45
+% of their paths with only two speakers,Removed more often than chance,33,34.92,21.05,45.45,33.35
+% of their paths with only two speakers,Within chance,379,33.33,22.47,45.23,34.54
+% of their paths with only two speakers,Removed less often than chance,14,37.04,24.11,55,42.25
+% of their paths with only two speakers,Fewer than 5 path endings,20036,0,0,66.67,31.91
+% of paths they did not end that went awry,Removed more often than chance,33,44.44,33.33,55.56,44.19
+% of paths they did not end that went awry,Within chance,373,42.86,30.77,56,44.12
+% of paths they did not end that went awry,Removed less often than chance,13,47.73,29.41,53.85,44.57
+% of paths they did not end that went awry,Fewer than 5 path endings,15124,60,0,100,56.12
+Career deltas (users with flair),Removed more often than chance,32,19.5,7,72.75,77.47
+Career deltas (users with flair),Within chance,354,26,10,64,57.71
+Career deltas (users with flair),Removed less often than chance,12,66,30.25,180.25,116
+Career deltas (users with flair),Fewer than 5 path endings,5368,2,1,5,6.35

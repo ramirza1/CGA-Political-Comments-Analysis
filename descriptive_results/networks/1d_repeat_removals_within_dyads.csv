@@ -1,0 +1,7 @@
+Measure,Value
+dyads,28480
+dyads_with_a_removal,7705
+dyads_with_2plus_removals,65
+removed_comments,7775
+removed_in_2plus_dyads,135
+pct_removed_in_2plus_dyads,1.74

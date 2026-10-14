@@ -1,0 +1,5 @@
+activity_group,n_users,pct_with_flair,median_flair_if_any,mean_flair_if_any
+One comment,6932,17.6,1,2.7
+"Other (2+ comments, bottom 95%)",12404,29.3,2,5.3
+Top 5% (excl. top 1%),915,77.6,9,22
+Top 1%,211,97.6,55,97.9

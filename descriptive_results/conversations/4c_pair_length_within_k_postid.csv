@@ -1,0 +1,10 @@
+k,n_pairs_within,label,pct_within,n_pairs_this_step
+0,5262,Same length,64.56,5262
+1,6872,Within 1,84.32,1610
+2,7338,Within 2,90.04,466
+3,7632,Within 3,93.64,294
+4,7790,Within 4,95.58,158
+5,7909,Within 5,97.04,119
+6,7984,Within 6,97.96,75
+7,8042,Within 7,98.67,58
+8,8150,8+,100,108

@@ -1,0 +1,13 @@
+activity_group,removal_label,n_users,pct
+One comment,Fewer than 5 path endings,6932,100
+"Other (2+ comments, bottom 95%)",Within chance,17,0.1
+"Other (2+ comments, bottom 95%)",Removed less often than chance,1,0
+"Other (2+ comments, bottom 95%)",Fewer than 5 path endings,12386,99.9
+Top 5% (excl. top 1%),Removed more often than chance,12,1.3
+Top 5% (excl. top 1%),Within chance,194,21.2
+Top 5% (excl. top 1%),Removed less often than chance,6,0.7
+Top 5% (excl. top 1%),Fewer than 5 path endings,703,76.8
+Top 1%,Removed more often than chance,21,10
+Top 1%,Within chance,168,79.6
+Top 1%,Removed less often than chance,7,3.3
+Top 1%,Fewer than 5 path endings,15,7.1

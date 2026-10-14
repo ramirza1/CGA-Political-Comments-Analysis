@@ -1,0 +1,97 @@
+topic_label,measure,n_pairs,mean,sd,median,se,ci_lower,ci_upper,ref
+All pairs,Path length (comments),8051,0.54,1.77,0,0.02,0.5,0.57,0
+All pairs,Speakers per path,8051,0.16,1.23,0,0.01,0.14,0.19,0
+All pairs,Final comment: own words,8051,14.3,123.61,4,1.38,11.6,17,0
+All pairs,Final comment quotes (pct points),8051,8.5,54.03,0,0.6,7.32,9.68,0
+All pairs,Challenger returns (pct points),8051,-1.04,64.48,0,0.72,-2.45,0.37,0
+All pairs,Awry path started first (% of pairs),8051,45.76,49.82,0,0.56,44.67,46.85,50
+Abortion and children (#4),Path length (comments),550,0.55,1.82,0,0.08,0.39,0.7,0
+Abortion and children (#4),Speakers per path,550,0.08,1.24,0,0.05,-0.03,0.18,0
+Abortion and children (#4),Final comment: own words,550,18.49,147.09,6,6.27,6.17,30.81,0
+Abortion and children (#4),Final comment quotes (pct points),550,9.64,52.25,0,2.23,5.26,14.01,0
+Abortion and children (#4),Challenger returns (pct points),550,2,64.27,0,2.74,-3.38,7.38,0
+Abortion and children (#4),Awry path started first (% of pairs),550,49.45,50.04,0,2.13,45.26,53.65,50
+Adult content and sexual crimes (#5),Path length (comments),485,0.59,1.8,0,0.08,0.43,0.75,0
+Adult content and sexual crimes (#5),Speakers per path,485,0.16,1.26,0,0.06,0.05,0.27,0
+Adult content and sexual crimes (#5),Final comment: own words,485,6.48,113.2,2,5.14,-3.62,16.58,0
+Adult content and sexual crimes (#5),Final comment quotes (pct points),485,5.15,52.17,0,2.37,0.5,9.81,0
+Adult content and sexual crimes (#5),Challenger returns (pct points),485,1.65,65.53,0,2.98,-4.2,7.5,0
+Adult content and sexual crimes (#5),Awry path started first (% of pairs),485,42.27,49.45,0,2.25,37.86,46.68,50
+Animal ethics and diet (#0),Path length (comments),273,0.68,1.66,0,0.1,0.48,0.88,0
+Animal ethics and diet (#0),Speakers per path,273,0.05,1.09,0,0.07,-0.08,0.18,0
+Animal ethics and diet (#0),Final comment: own words,273,28.38,130.73,7,7.91,12.8,43.95,0
+Animal ethics and diet (#0),Final comment quotes (pct points),273,10.26,50.41,0,3.05,4.25,16.26,0
+Animal ethics and diet (#0),Challenger returns (pct points),273,5.86,64.47,0,3.9,-1.82,13.54,0
+Animal ethics and diet (#0),Awry path started first (% of pairs),273,43.96,49.72,0,3.01,38.03,49.88,50
+COVID and vaccines (#9),Path length (comments),140,0.28,1.64,0,0.14,0.01,0.55,0
+COVID and vaccines (#9),Speakers per path,140,0.09,1.29,0,0.11,-0.12,0.31,0
+COVID and vaccines (#9),Final comment: own words,140,1.65,158.83,1,13.42,-24.89,28.19,0
+COVID and vaccines (#9),Final comment quotes (pct points),140,4.29,53.47,0,4.52,-4.65,13.22,0
+COVID and vaccines (#9),Challenger returns (pct points),140,-2.86,62.26,0,5.26,-13.26,7.55,0
+COVID and vaccines (#9),Awry path started first (% of pairs),140,55,49.93,100,4.22,46.66,63.34,50
+Cancel culture and society (#13),Path length (comments),727,0.69,1.91,0,0.07,0.56,0.83,0
+Cancel culture and society (#13),Speakers per path,727,0.23,1.12,0,0.04,0.15,0.31,0
+Cancel culture and society (#13),Final comment: own words,727,10.5,116.43,0,4.32,2.03,18.98,0
+Cancel culture and society (#13),Final comment quotes (pct points),727,7.15,51.73,0,1.92,3.39,10.92,0
+Cancel culture and society (#13),Challenger returns (pct points),727,-3.71,64.07,0,2.38,-8.38,0.95,0
+Cancel culture and society (#13),Awry path started first (% of pairs),727,46.22,49.89,0,1.85,42.58,49.85,50
+Countries and political systems (#1),Path length (comments),609,0.48,1.58,0,0.06,0.36,0.61,0
+Countries and political systems (#1),Speakers per path,609,0.12,1.18,0,0.05,0.03,0.21,0
+Countries and political systems (#1),Final comment: own words,609,7.28,110.73,3,4.49,-1.54,16.09,0
+Countries and political systems (#1),Final comment quotes (pct points),609,4.93,55.39,0,2.24,0.52,9.33,0
+Countries and political systems (#1),Challenger returns (pct points),609,-1.48,64.49,0,2.61,-6.61,3.65,0
+Countries and political systems (#1),Awry path started first (% of pairs),609,45.65,49.85,0,2.02,41.68,49.62,50
+Drugs and sex work (#8),Path length (comments),299,0.7,2.01,0,0.12,0.47,0.93,0
+Drugs and sex work (#8),Speakers per path,299,0.04,1.18,0,0.07,-0.09,0.18,0
+Drugs and sex work (#8),Final comment: own words,299,14.48,95.87,2,5.54,3.57,25.39,0
+Drugs and sex work (#8),Final comment quotes (pct points),299,6.02,49.47,0,2.86,0.39,11.65,0
+Drugs and sex work (#8),Challenger returns (pct points),299,-3.68,57.52,0,3.33,-10.23,2.87,0
+Drugs and sex work (#8),Awry path started first (% of pairs),299,42.81,49.56,0,2.87,37.17,48.45,50
+Economics (#3),Path length (comments),611,0.54,1.54,0,0.06,0.42,0.66,0
+Economics (#3),Speakers per path,611,0.1,1.25,0,0.05,-0,0.2,0
+Economics (#3),Final comment: own words,611,15.47,128.38,4,5.19,5.27,25.67,0
+Economics (#3),Final comment quotes (pct points),611,10.47,55.71,0,2.25,6.05,14.9,0
+Economics (#3),Challenger returns (pct points),611,2.78,67.57,0,2.73,-2.59,8.15,0
+Economics (#3),Awry path started first (% of pairs),611,49.26,50.04,0,2.02,45.29,53.24,50
+Guns and policing (#14),Path length (comments),300,0.59,1.58,0,0.09,0.41,0.77,0
+Guns and policing (#14),Speakers per path,300,0.22,1.29,0,0.07,0.07,0.36,0
+Guns and policing (#14),Final comment: own words,300,11.69,140.47,4,8.11,-4.27,27.65,0
+Guns and policing (#14),Final comment quotes (pct points),300,7,55.93,0,3.23,0.65,13.35,0
+Guns and policing (#14),Challenger returns (pct points),300,-6.67,63.53,0,3.67,-13.88,0.55,0
+Guns and policing (#14),Awry path started first (% of pairs),300,44.67,49.8,0,2.88,39.01,50.32,50
+"Men, women and feminism (#2)",Path length (comments),681,0.44,1.64,0,0.06,0.32,0.56,0
+"Men, women and feminism (#2)",Speakers per path,681,0.1,1.24,0,0.05,0,0.19,0
+"Men, women and feminism (#2)",Final comment: own words,681,16.75,123.96,8,4.75,7.43,26.08,0
+"Men, women and feminism (#2)",Final comment quotes (pct points),681,11.01,57.49,0,2.2,6.69,15.34,0
+"Men, women and feminism (#2)",Challenger returns (pct points),681,0.59,65.08,0,2.49,-4.31,5.48,0
+"Men, women and feminism (#2)",Awry path started first (% of pairs),681,45.81,49.86,0,1.91,42.06,49.57,50
+"Politicians, parties, and elections (#10)",Path length (comments),1165,0.52,1.62,0,0.05,0.43,0.61,0
+"Politicians, parties, and elections (#10)",Speakers per path,1165,0.26,1.31,0,0.04,0.18,0.34,0
+"Politicians, parties, and elections (#10)",Final comment: own words,1165,14.91,124.08,5,3.64,7.77,22.04,0
+"Politicians, parties, and elections (#10)",Final comment quotes (pct points),1165,10.21,54.59,0,1.6,7.08,13.35,0
+"Politicians, parties, and elections (#10)",Challenger returns (pct points),1165,-1.37,63.39,0,1.86,-5.02,2.27,0
+"Politicians, parties, and elections (#10)",Awry path started first (% of pairs),1165,45.15,49.79,0,1.46,42.29,48.01,50
+Public figures (#7),Path length (comments),363,0.72,2.16,0,0.11,0.5,0.94,0
+Public figures (#7),Speakers per path,363,0.19,1.24,0,0.07,0.06,0.32,0
+Public figures (#7),Final comment: own words,363,15.98,115.66,6,6.07,4.04,27.92,0
+Public figures (#7),Final comment quotes (pct points),363,11.85,50.39,0,2.64,6.64,17.05,0
+Public figures (#7),Challenger returns (pct points),363,-1.38,65,0,3.41,-8.09,5.33,0
+Public figures (#7),Awry path started first (% of pairs),363,44.9,49.81,0,2.61,39.76,50.04,50
+Race relations (#6),Path length (comments),927,0.52,1.6,0,0.05,0.42,0.63,0
+Race relations (#6),Speakers per path,927,0.23,1.21,0,0.04,0.15,0.31,0
+Race relations (#6),Final comment: own words,927,22.26,127.65,6,4.19,14.03,30.49,0
+Race relations (#6),Final comment quotes (pct points),927,6.36,55.31,0,1.82,2.8,9.93,0
+Race relations (#6),Challenger returns (pct points),927,-1.19,65.8,0,2.16,-5.43,3.05,0
+Race relations (#6),Awry path started first (% of pairs),927,43.58,49.61,0,1.63,40.38,46.78,50
+Religion (#12),Path length (comments),214,0.33,1.47,0,0.1,0.13,0.53,0
+Religion (#12),Speakers per path,214,0.14,1.33,0,0.09,-0.03,0.32,0
+Religion (#12),Final comment: own words,214,11.22,119.03,6,8.14,-4.81,27.26,0
+Religion (#12),Final comment quotes (pct points),214,9.81,54.36,0,3.72,2.49,17.14,0
+Religion (#12),Challenger returns (pct points),214,-6.54,66.81,0,4.57,-15.54,2.46,0
+Religion (#12),Awry path started first (% of pairs),214,40.19,49.14,0,3.36,33.57,46.81,50
+Transgender issues and sexuality (#11),Path length (comments),707,0.38,2.29,0,0.09,0.21,0.55,0
+Transgender issues and sexuality (#11),Speakers per path,707,0.18,1.24,0,0.05,0.08,0.27,0
+Transgender issues and sexuality (#11),Final comment: own words,707,9.67,114.28,2,4.3,1.24,18.11,0
+Transgender issues and sexuality (#11),Final comment quotes (pct points),707,9.9,54.42,0,2.05,5.88,13.92,0
+Transgender issues and sexuality (#11),Challenger returns (pct points),707,-3.25,63.68,0,2.39,-7.95,1.45,0
+Transgender issues and sexuality (#11),Awry path started first (% of pairs),707,48.37,50.01,0,1.88,44.68,52.07,50

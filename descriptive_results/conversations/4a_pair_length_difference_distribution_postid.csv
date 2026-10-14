@@ -1,0 +1,18 @@
+diff_bin,n_pairs,pct,direction
+-8,11,0.1,Awry shorter
+-7,2,0,Awry shorter
+-6,3,0,Awry shorter
+-5,8,0.1,Awry shorter
+-4,14,0.2,Awry shorter
+-3,45,0.6,Awry shorter
+-2,111,1.4,Awry shorter
+-1,475,5.8,Awry shorter
+0,5262,64.6,Same length
+1,1135,13.9,Awry longer
+2,355,4.4,Awry longer
+3,249,3.1,Awry longer
+4,144,1.8,Awry longer
+5,111,1.4,Awry longer
+6,72,0.9,Awry longer
+7,56,0.7,Awry longer
+8,97,1.2,Awry longer

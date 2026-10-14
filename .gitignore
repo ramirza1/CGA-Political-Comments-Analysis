@@ -1,19 +1,39 @@
-# ── Data (large; reproducible from the Python export + this repo's scripts) ──
-# Raw input CSVs from the Python/ConvoKit stage
-Input_data_from_python/*.csv
+# ── Private data (usernames) — never commit ───────────────────────────────────
+# Exported CSVs with usernames, the username <-> ID key, and the username
+# version of the user table (written by 1_data_prep.R, 1b and 3)
+input_data_from_python/*
+!input_data_from_python/.gitkeep
 
-# Derived analysis tables built by script 1
-Derived_data/*.rds
-Derived_data/*.csv
-Derived_data/*.parquet
+# Prepped .rds files with usernames (1_data_prep.R)
+prepped_data/*
+!prepped_data/.gitkeep
+
+# Belt and braces: the private key, wherever it ends up
+**/PRIVATE_*
+
+# Shareable data (input_data_anonymized/, prepped_data_anonymized/) IS committed.
+# GitHub rejects files over 100 MB: check the .rds sizes before pushing.
+
+# Embedding cache from 5_topics.py (large; rebuilt automatically)
+prepped_data_anonymized/topic_embeddings/
 
 # Keep the folder structure itself
 !**/.gitkeep
+
+# ── Secrets and environments ─────────────────────────────────────────────────
+.env
+.venv/
+
+# ── Python cruft ─────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
 
 # ── R session / project cruft ────────────────────────────────────────────────
 .Rproj.user/
 .Rhistory
 .RData
+.RDataTmp
 .Ruserdata
 *.Rproj.bak
 
@@ -21,10 +41,10 @@ Derived_data/*.parquet
 renv/library/
 renv/staging/
 
-# ── Outputs: keep folders, decide per-type what to commit ───────────────────
-# By default we DO commit final tables/figures so the repo is browsable,
-# but ignore scratch/intermediate files. Adjust as the project matures.
-Graphical_output/**/*.tmp
+# ── Outputs ──────────────────────────────────────────────────────────────────
+# Final tables and figures ARE committed so the repo is browsable;
+# only scratch files are ignored.
+graphical_output/**/*.tmp
 *.log
 
 # ── OS / editor ──────────────────────────────────────────────────────────────
@@ -33,10 +53,10 @@ Thumbs.db
 desktop.ini
 .vscode/
 *~
+~$*
 
-# ── LaTeX build artifacts (script 6 / Overleaf sync) ────────────────────────
+# ── LaTeX build artifacts (Overleaf sync) ────────────────────────────────────
 *.aux
-*.log
 *.out
 *.toc
 *.synctex.gz

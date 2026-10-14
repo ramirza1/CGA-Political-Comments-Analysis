@@ -1,0 +1,13 @@
+political_group,group,n_users,mean_pct,sd,ci_lower,ci_upper,corpus_pct_threads
+Explicitly political,All users (3+ threads),2681,23.32,22.16,22.48,24.16,21.71
+Explicitly political,"Other (2+ comments, bottom 95%)",1674,23.72,24.22,22.56,24.89,21.71
+Explicitly political,Top 5% (excl. top 1%),798,22.72,19.55,21.36,24.08,21.71
+Explicitly political,Top 1%,209,22.42,11.87,20.8,24.04,21.71
+Explicitly political,No removed comment,966,22.86,22.99,21.41,24.32,21.71
+Explicitly political,Wrote a removed comment,1715,23.58,21.69,22.56,24.61,21.71
+Implicitly political,All users (3+ threads),2681,76.68,22.16,75.84,77.52,78.29
+Implicitly political,"Other (2+ comments, bottom 95%)",1674,76.28,24.22,75.11,77.44,78.29
+Implicitly political,Top 5% (excl. top 1%),798,77.28,19.55,75.92,78.64,78.29
+Implicitly political,Top 1%,209,77.58,11.87,75.96,79.2,78.29
+Implicitly political,No removed comment,966,77.14,22.99,75.68,78.59,78.29
+Implicitly political,Wrote a removed comment,1715,76.42,21.69,75.39,77.44,78.29

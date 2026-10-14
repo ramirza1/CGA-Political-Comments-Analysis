@@ -1,0 +1,21 @@
+type,share_bin,n_users,pct
+Expected if paths were joined at random,0-10%,19.836351969135425,1.2
+Expected if paths were joined at random,10-20%,44.46620744004567,2.7
+Expected if paths were joined at random,20-30%,148.54369345507843,9.2
+Expected if paths were joined at random,30-40%,168.1622911667614,10.4
+Expected if paths were joined at random,40-50%,343.98990833621934,21.2
+Expected if paths were joined at random,50-60%,514.9930036017388,31.8
+Expected if paths were joined at random,60-70%,175.11986492638536,10.8
+Expected if paths were joined at random,70-80%,73.56780407102083,4.5
+Expected if paths were joined at random,80-90%,111.92678012415473,6.9
+Expected if paths were joined at random,90-100%,20.39409490946,1.3
+Observed,0-10%,16,1
+Observed,10-20%,46,2.8
+Observed,20-30%,124,7.6
+Observed,30-40%,185,11.4
+Observed,40-50%,311,19.2
+Observed,50-60%,557,34.4
+Observed,60-70%,162,10
+Observed,70-80%,77,4.8
+Observed,80-90%,99,6.1
+Observed,90-100%,44,2.7

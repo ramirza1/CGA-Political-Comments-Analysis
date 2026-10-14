@@ -1,0 +1,13 @@
+Measure,Value
+Replies (comments at depth 1+),79903
+  excluded: replier or replied-to is [deleted],4629
+  excluded: self-replies,45
+Replies in the network,75229
+Users (nodes),20178
+Directed ties (user A replied to user B at least once),44101
+Density (share of possible directed ties present),0
+Reciprocity (share of ties that run both ways),0.708
+Weakly connected components,874
+% of users in the largest component,89.023
+Removed comments in the network,7775
+Removed comments excluded ([deleted] or self-reply),375

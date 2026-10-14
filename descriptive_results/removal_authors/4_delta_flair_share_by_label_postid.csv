@@ -1,0 +1,5 @@
+removal_label,n_users,pct_with_delta_flair
+Removed more often than chance,33,97
+Within chance,379,93.4
+Removed less often than chance,14,85.7
+Fewer than 5 path endings,20036,26.8

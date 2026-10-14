@@ -1,0 +1,9 @@
+outcome,giver,recipient,n_comments,pct
+Awry,Giver is [deleted],Recipient is the challenger,3,3.53
+Awry,Giver is another user,Recipient is another user,5,5.88
+Awry,Giver is another user,Recipient is the challenger,77,90.59
+On-track,Giver is [deleted],Recipient is the challenger,3,2.97
+On-track,Giver is another user,Recipient is [deleted],4,3.96
+On-track,Giver is another user,Recipient is another user,8,7.92
+On-track,Giver is another user,Recipient is the challenger,84,83.17
+On-track,Giver is the challenger,Recipient is another user,2,1.98

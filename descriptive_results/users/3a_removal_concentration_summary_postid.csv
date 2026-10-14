@@ -1,0 +1,10 @@
+Metric,Value
+Removed comments by identifiable users,"7,785"
+Distinct authors of removed comments,"5,263"
+% of identifiable users with >=1 removed comment,25.7%
+Authors with exactly 1 removed comment,"4,247"
+Authors with 2+ removed comments,"1,016"
+% of removed comments written by repeat (2+) authors,45.4%
+Max removed comments by one author,42
+% of removed comments written by top 1% users,18.2%
+% of all comments written by top 1% users,16.3%

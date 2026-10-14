@@ -1,0 +1,11 @@
+removal_count_band,removal_label,n_users,pct_of_band
+0,Removed less often than chance,8,0.1
+0,Fewer than 5 path endings,15191,99.9
+1,Within chance,27,0.6
+1,Removed less often than chance,3,0.1
+1,Fewer than 5 path endings,4217,99.3
+2-4,Within chance,204,24.4
+2-4,Removed less often than chance,3,0.4
+2-4,Fewer than 5 path endings,628,75.2
+5+,Removed more often than chance,33,18.2
+5+,Within chance,148,81.8

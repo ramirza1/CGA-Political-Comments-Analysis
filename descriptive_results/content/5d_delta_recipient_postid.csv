@@ -1,0 +1,7 @@
+outcome,recipient,n_comments,n_total,pct
+Awry,Recipient is [deleted],0,85,0
+Awry,Recipient is another user,5,85,5.88
+Awry,Recipient is the challenger,80,85,94.12
+On-track,Recipient is [deleted],4,101,3.96
+On-track,Recipient is another user,10,101,9.9
+On-track,Recipient is the challenger,87,101,86.14

@@ -1,0 +1,5 @@
+activity_group,n_users,median_comments,total_comments,pct_users,pct_comments
+One comment,6932,1,6932,33.9,7.4
+"Other (2+ comments, bottom 95%)",12404,3,52149,60.6,55.9
+Top 5% (excl. top 1%),915,19,18993,4.5,20.4
+Top 1%,211,56,15217,1,16.3

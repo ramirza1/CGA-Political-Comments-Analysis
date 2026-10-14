@@ -1,0 +1,4 @@
+activity_group,n_users,mean_share_awry,sd_share_awry
+"Other (2+ comments, bottom 95%)",609,50.8,21.3
+Top 5% (excl. top 1%),801,52.1,17.6
+Top 1%,211,47.9,12.4

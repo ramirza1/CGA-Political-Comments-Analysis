@@ -1,0 +1,2 @@
+n_users,min_paths,mean_share_awry,sd_share_awry_observed,sd_share_awry_expected,pct_users_70plus_awry,pct_users_30minus_awry,pct_users_in_both_halves_of_a_pair
+1621,5,51.1,18.6,18.2,13.9,11.5,47.4

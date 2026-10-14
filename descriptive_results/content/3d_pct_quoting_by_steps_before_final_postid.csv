@@ -1,0 +1,13 @@
+outcome,steps_group,n,n_yes,pct,ci_lower,ci_upper
+Awry,5+ before,15562,3097,19.9,19.28,20.54
+Awry,4 before,5074,1132,22.31,21.19,23.48
+Awry,3 before,6015,1068,17.76,16.81,18.74
+Awry,2 before,7315,1703,23.28,22.33,24.26
+Awry,1 before,8150,1469,18.02,17.21,18.87
+Awry,Final,8150,1948,23.9,22.99,24.84
+On-track,5+ before,12224,2344,19.18,18.49,19.88
+On-track,4 before,4580,807,17.62,16.54,18.75
+On-track,3 before,5812,1038,17.86,16.9,18.87
+On-track,2 before,7021,1178,16.78,15.92,17.67
+On-track,1 before,8150,1480,18.16,17.34,19.01
+On-track,Final,8150,1254,15.39,14.62,16.19

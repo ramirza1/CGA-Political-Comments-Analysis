@@ -1,0 +1,36 @@
+activity_group,flair_bin,n_users,pct
+One comment,None,5715,82.4
+One comment,1,668,9.6
+One comment,2,228,3.3
+One comment,3-5,195,2.8
+One comment,6-10,86,1.2
+One comment,11-25,33,0.5
+One comment,26-50,6,0.1
+One comment,51-100,1,0
+"Other (2+ comments, bottom 95%)",None,8772,70.7
+"Other (2+ comments, bottom 95%)",1,1336,10.8
+"Other (2+ comments, bottom 95%)",2,650,5.2
+"Other (2+ comments, bottom 95%)",3-5,778,6.3
+"Other (2+ comments, bottom 95%)",6-10,422,3.4
+"Other (2+ comments, bottom 95%)",11-25,332,2.7
+"Other (2+ comments, bottom 95%)",26-50,81,0.7
+"Other (2+ comments, bottom 95%)",51-100,27,0.2
+"Other (2+ comments, bottom 95%)",100+,6,0
+Top 5% (excl. top 1%),None,205,22.4
+Top 5% (excl. top 1%),1,84,9.2
+Top 5% (excl. top 1%),2,45,4.9
+Top 5% (excl. top 1%),3-5,116,12.7
+Top 5% (excl. top 1%),6-10,142,15.5
+Top 5% (excl. top 1%),11-25,155,16.9
+Top 5% (excl. top 1%),26-50,89,9.7
+Top 5% (excl. top 1%),51-100,56,6.1
+Top 5% (excl. top 1%),100+,23,2.5
+Top 1%,None,5,2.4
+Top 1%,1,3,1.4
+Top 1%,2,1,0.5
+Top 1%,3-5,6,2.8
+Top 1%,6-10,14,6.6
+Top 1%,11-25,33,15.6
+Top 1%,26-50,40,19
+Top 1%,51-100,44,20.9
+Top 1%,100+,65,30.8

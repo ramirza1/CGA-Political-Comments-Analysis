@@ -1,0 +1,14 @@
+gap_bin,first,n_pairs,pct
+0-1 hr,Awry path first,2624,32.2
+0-1 hr,On-track path first,2734,33.5
+0-1 hr,Same time,2,0
+1-3 hrs,Awry path first,657,8.1
+1-3 hrs,On-track path first,814,10
+3-6 hrs,Awry path first,277,3.4
+3-6 hrs,On-track path first,418,5.1
+6-12 hrs,Awry path first,108,1.3
+6-12 hrs,On-track path first,265,3.3
+12-24 hrs,Awry path first,49,0.6
+12-24 hrs,On-track path first,134,1.6
+>1 day,Awry path first,17,0.2
+>1 day,On-track path first,51,0.6

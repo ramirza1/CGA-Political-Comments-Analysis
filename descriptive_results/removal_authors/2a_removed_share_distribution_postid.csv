@@ -1,0 +1,21 @@
+type,share_bin,n_users,pct
+Expected by chance,0-10%,6.008224498902967,1.4
+Expected by chance,10-20%,12.331447447640286,2.9
+Expected by chance,20-30%,41.02355767406752,9.6
+Expected by chance,30-40%,42.72196179011888,10
+Expected by chance,40-50%,89.56697127357205,21
+Expected by chance,50-60%,132.26264590496862,31
+Expected by chance,60-70%,44.4128757783962,10.4
+Expected by chance,70-80%,18.144678692677765,4.3
+Expected by chance,80-90%,33.382508711462954,7.8
+Expected by chance,90-100%,6.145128228192737,1.4
+Observed,0-10%,9,2.1
+Observed,10-20%,10,2.3
+Observed,20-30%,36,8.5
+Observed,30-40%,30,7
+Observed,40-50%,64,15
+Observed,50-60%,99,23.2
+Observed,60-70%,65,15.3
+Observed,70-80%,37,8.7
+Observed,80-90%,59,13.8
+Observed,90-100%,17,4

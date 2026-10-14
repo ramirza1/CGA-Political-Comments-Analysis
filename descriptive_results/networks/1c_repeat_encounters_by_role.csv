@@ -1,0 +1,4 @@
+role,n_replies,n_met_before,mean_prior_threads,n_exchanged_earlier_path,mean_prior_in_path,pct_met_before,pct_met_before_lower,pct_met_before_upper,pct_exchanged_earlier,pct_exchanged_lower,pct_exchanged_upper
+Removed comment,7775,15,0,5679,2.55,0.19,0.12,0.32,73.04,72.04,74.02
+On-track final comment,7588,13,0,5238,2.23,0.17,0.1,0.29,69.03,67.98,70.06
+Other replies,59866,149,0,35444,1.67,0.25,0.21,0.29,59.21,58.81,59.6

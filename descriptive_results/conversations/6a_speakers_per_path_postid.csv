@@ -1,0 +1,12 @@
+outcome,speaker_bin,n_paths,pct
+Awry,2,3710,45.5
+Awry,3,2397,29.4
+Awry,4,1230,15.1
+Awry,5,531,6.5
+Awry,6,282,3.5
+On-track,1,12,0.1
+On-track,2,4123,50.6
+On-track,3,2480,30.4
+On-track,4,997,12.2
+On-track,5,355,4.4
+On-track,6,183,2.2

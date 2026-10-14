@@ -1,0 +1,2 @@
+n_users,mean_z,sd_z_observed,sd_z_if_chance,pct_z_ge_2,pct_z_le_minus_2,max_z
+426,0.36,1.25,1,7.7,3.3,3.87
