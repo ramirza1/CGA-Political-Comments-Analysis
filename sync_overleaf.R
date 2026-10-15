@@ -48,7 +48,7 @@ PUSH         <- TRUE                        # FALSE = copy only, no git
 COMMIT_MSG   <- sprintf("Sync analysis outputs (%s)", format(Sys.time(), "%Y-%m-%d %H:%M"))
 
 # Optional: a Zotero (Better BibTeX "Keep updated") export to copy as references.bib
-BIB_SOURCE   <- NULL                        # e.g. "C:/Users/rmirza/Zotero/Reddit_CMV_Analysis.bib"
+BIB_SOURCE <- "Reddit_CMV_Analysis.bib"                       # e.g. "C:/Users/rmirza/Zotero/Reddit_CMV_Analysis.bib"
 
 # Folders mirrored into every project
 MIRRORS <- c(
